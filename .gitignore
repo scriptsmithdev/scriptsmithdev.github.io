@@ -1,0 +1,85 @@
+# =========================
+# Operating System Files
+# =========================
+
+.DS_Store
+Thumbs.db
+
+
+# =========================
+# Editors / IDEs
+# =========================
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+
+# =========================
+# Environment / Secrets
+# =========================
+
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+credentials
+credentials.json
+
+
+# =========================
+# Logs / Temporary Files
+# =========================
+
+*.log
+*.tmp
+*.temp
+
+
+# =========================
+# Node.js
+# =========================
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+# =========================
+# Python
+# =========================
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+
+# =========================
+# Terraform
+# =========================
+
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+
+# =========================
+# Build / Distribution
+# =========================
+
+dist/
+build/
+
+
+# =========================
+# Local Testing
+# =========================
+
+coverage/
