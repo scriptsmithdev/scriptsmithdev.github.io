@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta name="description"
+          content="Felix Amoah - DevSecOps Engineer in Training, Security Professional, Pipe Fitter, Rigger and Warehouse Professional">
+
     <title>Felix Amoah | DevSecOps Engineer in Training</title>
 
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         html {
@@ -19,20 +22,20 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #0b1120;
-            color: #e5e7eb;
+            background: #0f172a;
+            color: #e2e8f0;
             line-height: 1.7;
         }
 
         /* NAVIGATION */
-
         nav {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: #111827;
-            border-bottom: 1px solid #374151;
-            padding: 15px 8%;
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid #334155;
+            padding: 15px 5%;
+            backdrop-filter: blur(10px);
         }
 
         nav .nav-container {
@@ -43,10 +46,10 @@
             align-items: center;
         }
 
-        nav .logo {
-            color: #38bdf8;
+        .logo {
+            font-size: 1.2rem;
             font-weight: bold;
-            font-size: 20px;
+            color: #38bdf8;
         }
 
         nav ul {
@@ -56,8 +59,9 @@
         }
 
         nav a {
-            color: #d1d5db;
+            color: #cbd5e1;
             text-decoration: none;
+            font-size: 0.95rem;
             transition: 0.3s;
         }
 
@@ -66,43 +70,51 @@
         }
 
         /* HERO */
-
         .hero {
             min-height: 90vh;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 80px 20px;
+            padding: 60px 20px;
             background:
-                radial-gradient(circle at top, #172554, #0b1120 55%);
+                radial-gradient(circle at top, #1e3a5f 0%, #0f172a 45%);
         }
 
         .hero-content {
-            max-width: 900px;
+            max-width: 850px;
         }
 
         .hero h1 {
-            font-size: clamp(42px, 7vw, 76px);
-            color: white;
-            margin-bottom: 10px;
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            color: #f8fafc;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        /* PROFILE PICTURE */
+        .profile-picture {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #38bdf8;
+            display: block;
+            margin: 10px auto 15px;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
         }
 
         .hero h2 {
             color: #38bdf8;
-            font-size: clamp(20px, 3vw, 30px);
-            margin-bottom: 25px;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 20px;
         }
 
         .hero p {
-            max-width: 750px;
-            margin: auto;
             color: #cbd5e1;
-            font-size: 18px;
-        }
-
-        .buttons {
-            margin-top: 35px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.05rem;
         }
 
         .btn {
@@ -116,12 +128,12 @@
         }
 
         .btn-primary {
-            background: #0284c7;
-            color: white;
+            background: #38bdf8;
+            color: #0f172a;
         }
 
         .btn-primary:hover {
-            background: #0369a1;
+            background: #7dd3fc;
             transform: translateY(-2px);
         }
 
@@ -132,11 +144,10 @@
 
         .btn-secondary:hover {
             background: #38bdf8;
-            color: #0b1120;
+            color: #0f172a;
         }
 
-        /* GENERAL */
-
+        /* SECTIONS */
         section {
             padding: 80px 20px;
         }
@@ -148,103 +159,81 @@
 
         .section-title {
             text-align: center;
-            font-size: 36px;
-            margin-bottom: 45px;
-            color: white;
+            margin-bottom: 50px;
         }
 
-        .section-title span {
-            color: #38bdf8;
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: #f8fafc;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #94a3b8;
         }
 
         /* ABOUT */
-
         .about {
             background: #111827;
         }
 
-        .about-text {
-            max-width: 900px;
+        .about-content {
+            max-width: 850px;
             margin: auto;
-            font-size: 17px;
+            text-align: center;
             color: #cbd5e1;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
         }
 
         /* EXPERIENCE */
-
         .timeline {
-            position: relative;
             max-width: 900px;
             margin: auto;
         }
 
-        .timeline::before {
-            content: "";
-            position: absolute;
-            left: 20px;
-            top: 0;
-            width: 2px;
-            height: 100%;
-            background: #334155;
+        .job {
+            background: #1e293b;
+            border-left: 4px solid #38bdf8;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 0 8px 8px 0;
+            transition: 0.3s;
         }
 
-        .timeline-item {
-            position: relative;
-            padding-left: 60px;
-            margin-bottom: 45px;
+        .job:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
         }
 
-        .timeline-dot {
-            position: absolute;
-            left: 11px;
-            top: 5px;
-            width: 20px;
-            height: 20px;
-            background: #38bdf8;
-            border-radius: 50%;
-            border: 4px solid #0b1120;
-        }
-
-        .timeline-item h3 {
+        .job h3 {
             color: #38bdf8;
-            font-size: 22px;
+            margin-bottom: 5px;
         }
 
-        .timeline-item h4 {
-            color: white;
-            margin: 5px 0;
+        .job h4 {
+            color: #f8fafc;
+            margin-bottom: 10px;
         }
 
-        .timeline-item p {
+        .job p {
             color: #cbd5e1;
         }
 
-        .date {
-            color: #94a3b8;
-            font-size: 14px;
-        }
-
         /* SKILLS */
-
         .skills {
             background: #111827;
         }
 
         .skill-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
         }
 
         .skill-card {
-            background: #0b1120;
-            border: 1px solid #334155;
+            background: #1e293b;
             padding: 25px;
             border-radius: 8px;
+            border: 1px solid #334155;
             transition: 0.3s;
         }
 
@@ -260,42 +249,32 @@
 
         .skill-card p {
             color: #cbd5e1;
-            font-size: 14px;
         }
 
         /* DEVSECOPS */
-
         .devsecops {
-            text-align: center;
+            background: #0f172a;
         }
 
-        .progress-container {
-            max-width: 700px;
-            margin: 30px auto;
+        .journey {
+            max-width: 900px;
+            margin: auto;
         }
 
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .progress-bar {
-            height: 14px;
+        .journey-step {
             background: #1e293b;
-            border-radius: 10px;
-            overflow: hidden;
+            padding: 22px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #22c55e;
         }
 
-        .progress {
-            height: 100%;
-            width: 67%;
-            background: #38bdf8;
-            border-radius: 10px;
+        .journey-step h3 {
+            color: #22c55e;
+            margin-bottom: 5px;
         }
 
         /* PROJECTS */
-
         .projects {
             background: #111827;
         }
@@ -306,61 +285,64 @@
             gap: 25px;
         }
 
-        .project-card {
+        .project {
+            background: #1e293b;
             padding: 25px;
-            border: 1px solid #334155;
-            background: #0b1120;
             border-radius: 8px;
+            border: 1px solid #334155;
         }
 
-        .project-card h3 {
+        .project h3 {
             color: #38bdf8;
             margin-bottom: 10px;
         }
 
-        .project-card p {
+        .project p {
             color: #cbd5e1;
         }
 
-        /* CONTACT */
+        .tech {
+            margin-top: 15px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
 
+        /* CONTACT */
         .contact {
             text-align: center;
         }
 
-        .contact p {
+        .contact-box {
             max-width: 700px;
-            margin: 0 auto 25px;
+            margin: auto;
+            background: #1e293b;
+            padding: 35px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+        }
+
+        .contact-box p {
+            margin-bottom: 10px;
             color: #cbd5e1;
         }
 
         /* FOOTER */
-
         footer {
-            text-align: center;
-            padding: 30px;
             background: #020617;
-            color: #94a3b8;
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+            border-top: 1px solid #1e293b;
         }
 
-        /* BACK TO TOP */
-
-        #topButton {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            display: none;
-            border: none;
-            background: #0284c7;
-            color: white;
-            padding: 12px 16px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 18px;
+        /* JAVASCRIPT STATUS */
+        #status {
+            margin-top: 20px;
+            color: #22c55e;
+            font-size: 0.9rem;
         }
 
         /* MOBILE */
-
         @media (max-width: 700px) {
 
             nav .nav-container {
@@ -369,24 +351,26 @@
             }
 
             nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
                 gap: 12px;
-                font-size: 14px;
             }
 
             .hero {
                 min-height: 80vh;
             }
 
-            .timeline::before {
-                left: 10px;
+            section {
+                padding: 60px 15px;
             }
 
-            .timeline-item {
-                padding-left: 40px;
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            .timeline-dot {
-                left: 1px;
+            .profile-picture {
+                width: 80px;
+                height: 80px;
             }
         }
     </style>
@@ -394,616 +378,553 @@
 
 <body>
 
-    <!-- NAVIGATION -->
+<!-- NAVIGATION -->
+<nav>
+    <div class="nav-container">
+        <div class="logo">FA</div>
 
-    <nav>
-        <div class="nav-container">
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#devsecops">DevSecOps</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
 
-            <div class="logo">
-                FELIX AMOAH
-            </div>
 
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#devsecops">DevSecOps</a></li>
-                <li><a href="#projects">Projects</a></li>
-            </ul>
+<!-- HERO -->
+<header class="hero">
 
+    <div class="hero-content">
+
+        <h1>Felix Amoah</h1>
+
+        <!-- PROFILE PHOTO -->
+        <img
+            src="profile.jpg"
+            alt="Felix Amoah"
+            class="profile-picture"
+        >
+
+        <h2>DevSecOps Engineer in Training</h2>
+
+        <p>
+            Security Professional | Pipe Fitter | Rigger |
+            Warehouse Professional | Aspiring DevSecOps Engineer
+        </p>
+
+        <a href="#about" class="btn btn-primary">
+            Explore My Journey
+        </a>
+
+        <a href="#contact" class="btn btn-secondary">
+            Contact Me
+        </a>
+
+        <div id="status"></div>
+
+    </div>
+
+</header>
+
+
+<!-- ABOUT -->
+<section id="about" class="about">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>About Me</h2>
+            <p>My professional journey and future direction</p>
         </div>
-    </nav>
 
-
-    <!-- HERO -->
-
-    <header class="hero">
-
-        <div class="hero-content">
-
-            <h1>Felix Amoah</h1>
-
-<img
-    src="profile.jpg"
-    alt="Felix Amoah"
-    class="profile-picture"
->
-
-            <h2>
-                DevSecOps Engineer in Training
-            </h2>
+        <div class="about-content">
 
             <p>
-                A versatile and disciplined professional with experience
+                My name is <strong>Felix Amoah</strong>, a hardworking,
+                disciplined and adaptable professional with experience
                 across security, warehouse operations, construction,
-                pipe fitting and rigging, currently transitioning into
-                cloud computing, automation, cybersecurity and DevSecOps.
+                rigging and pipe fitting.
             </p>
 
-            <div class="buttons">
-
-                <a href="#about" class="btn btn-primary">
-                    Explore My Journey
-                </a>
-
-                <a href="#projects" class="btn btn-secondary">
-                    View Projects
-                </a>
-
-            </div>
-
-        </div>
-
-    </header>
-
-
-    <!-- ABOUT -->
-
-    <section id="about" class="about">
-
-        <div class="container">
-
-            <h2 class="section-title">
-                About <span>Me</span>
-            </h2>
-
-            <div class="about-text">
-
-                <p>
-                    My name is <strong>Felix Amoah</strong>. I am a
-                    hardworking, adaptable and continuously learning
-                    professional with experience in security operations,
-                    warehouse management, construction and industrial
-                    work.
-                </p>
-
-                <p>
-                    My professional journey has taken me through different
-                    industries and working environments in Ghana, the
-                    United Arab Emirates and Qatar. These experiences have
-                    helped me develop discipline, responsibility,
-                    teamwork, attention to detail and the ability to work
-                    effectively under pressure.
-                </p>
-
-                <p>
-                    I began my professional journey as a
-                    <strong>Warehouse Man at Guinness Ghana Limited,
-                    Ahinsan</strong>. This experience strengthened my
-                    understanding of inventory handling, warehouse
-                    operations, organization, safety procedures and
-                    teamwork.
-                </p>
-
-
-                 <p>
-                    I have a professional experience in Ghana as a
-                    <strong>Security Receptionist at Oak Plaza, Asokwa</strong>,
-                    where I was responsible for maintaining a professional
-                    security presence while assisting with the safety and
-                    orderly operation of the facility.
-                </p>
-
-
-
-                <p>
-                    I later gained international work experience in Dubai,
-                    working with <strong>City Nights Contracting LLC</strong>
-                    as security personnel. Working in a different country
-                    exposed me to new professional standards, multicultural
-                    teams and demanding working environments.
-                </p>
-
-
-                <p>
-                    My industrial experience continued with
-                    <strong>Emkan for Engineering and Contracting
-                    Services</strong>, where I worked as a
-                    <strong>Assistant Pipe Fitter for sometimes and then transition to be a Rigger</strong>. This role
-                    introduced me to industrial construction environments,
-                    equipment handling, safety awareness and working
-                    according to established procedures.
-                </p>
-
-
-                <p>
-                    Today, I am expanding my career into technology.
-                    I am currently enrolled in a <strong>six-month
-                    DevSecOps course</strong> and I am approaching the
-                    four-month mark of my training. My goal is to combine
-                    my practical work experience with cloud computing,
-                    automation, infrastructure, security and software
-                    delivery.
-                </p>
-
-
-                <p>
-                    I believe that DevSecOps is not only about technology.
-                    It also requires discipline, responsibility, security
-                    awareness, continuous learning and the ability to
-                    solve problems systematically — qualities I have
-                    developed throughout my professional journey.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- EXPERIENCE -->
-
-    <section id="experience">
-
-        <div class="container">
-
-            <h2 class="section-title">
-                Professional <span>Experience</span>
-            </h2>
-
-            <div class="timeline">
-
-                <div class="timeline-item">
-
-                    <div class="timeline-dot"></div>
-
-                    <h3>Security Receptionist</h3>
-
-                    <h4>Oak Plaza — Asokwa, Ghana</h4>
-
-                    <span class="date">
-                        Ghana
-                    </span>
-
-                    <p>
-                        Worked in a security and reception environment,
-                        maintaining a professional presence, assisting
-                        with access control and supporting the safe and
-                        orderly operation of the facility.
-                    </p>
-
-                </div>
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-dot"></div>
-
-                    <h3>Warehouse Man</h3>
-
-                    <h4>Guinness Ghana Limited — Ahinsan, Ghana</h4>
-
-                    <span class="date">
-                        Ghana
-                    </span>
-
-                    <p>
-                        Gained practical experience in warehouse
-                        operations, inventory handling, organization,
-                        material movement, workplace safety and teamwork.
-                    </p>
-
-                </div>
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-dot"></div>
-
-                    <h3>Security Personnel</h3>
-
-                    <h4>City Nights Contracting LLC — Dubai, UAE</h4>
-
-                    <span class="date">
-                        United Arab Emirates
-                    </span>
-
-                    <p>
-                        Worked as security personnel in Dubai, developing
-                        experience in security operations, responsibility,
-                        professional conduct and working within a
-                        multicultural international environment.
-                    </p>
-
-                </div>
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-dot"></div>
-
-                    <h3>Pipe Fitter cum Rigger</h3>
-
-                    <h4>Emkan for Engineering and Contracting Services</h4>
-
-                    <span class="date">
-                        Qatar
-                    </span>
-
-                    <p>
-                        Worked in an engineering and contracting environment
-                        as a pipe fitter and rigger, developing practical
-                        experience with industrial work, equipment handling,
-                        safety procedures and construction operations.
-                    </p>
-
-                </div>
-
-
-                <div class="timeline-item">
-
-                    <div class="timeline-dot"></div>
-
-                    <h3>DevSecOps Engineer in Training</h3>
-
-                    <h4>Six-Month DevSecOps Training Program</h4>
-
-                    <span class="date">
-                        Current
-                    </span>
-
-                    <p>
-                        Currently developing practical knowledge in Linux,
-                        Git and GitHub, AWS, Terraform, CI/CD, cloud
-                        infrastructure and security, with further studies
-                        in Kubernetes, Ansible and GitHub Actions.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- SKILLS -->
-
-    <section id="skills" class="skills">
-
-        <div class="container">
-
-            <h2 class="section-title">
-                Technical <span>Skills</span>
-            </h2>
-
-            <div class="skill-grid">
-
-                <div class="skill-card">
-                    <h3>Linux</h3>
-                    <p>
-                        Linux administration, terminal usage,
-                        system services, permissions and troubleshooting.
-                    </p>
-                </div>
-
-                <div class="skill-card">
-                    <h3>Git & GitHub</h3>
-                    <p>
-                        Version control, repositories, branches,
-                        commits, pull requests and collaborative
-                        development workflows.
-                    </p>
-                </div>
-
-                <div class="skill-card">
-                    <h3>AWS</h3>
-                    <p>
-                        Cloud infrastructure concepts including EC2,
-                        IAM, S3, networking, security groups and
-                        AWS CLI.
-                    </p>
-                </div>
-
-                <div class="skill-card">
-                    <h3>Terraform</h3>
-                    <p>
-                        Infrastructure as Code, Terraform configuration,
-                        state management, planning and infrastructure
-                        deployment.
-                    </p>
-                </div>
-
-                <div class="skill-card">
-                    <h3>CI/CD</h3>
-                    <p>
-                        Understanding automated build, testing,
-                        security scanning and deployment pipelines.
-                    </p>
-                </div>
-
-                <div class="skill-card">
-                    <h3>Docker</h3>
-                    <p>
-                        Container concepts, images, containers,
-                        Docker CLI and containerized applications.
-                    </p>
-                </div>
-
-                <div class="skill-card">
-                    <h3>Cybersecurity</h3>
-                    <p>
-                        Security awareness, vulnerability scanning,
-                        least privilege and integrating security into
-                        development workflows.
-                    </p>
-                </div>
-
-                <div class="skill-card">
-                    <h3>Nginx</h3>
-                    <p>
-                        Web server configuration, hosting static websites
-                        and understanding basic HTTP traffic and ports.
-                    </p>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- DEVSECOPS -->
-
-    <section id="devsecops" class="devsecops">
-
-        <div class="container">
-
-            <h2 class="section-title">
-                My <span>DevSecOps Journey</span>
-            </h2>
+            <br>
 
             <p>
-                I am currently enrolled in a six-month DevSecOps program
-                and approaching four months of training.
+                Throughout my career, I have developed strong abilities
+                in safety awareness, teamwork, responsibility,
+                problem-solving and working effectively under pressure.
             </p>
 
-            <div class="progress-container">
+            <br>
 
-                <div class="progress-label">
+            <p>
+                I am currently transitioning into the technology industry
+                by studying DevSecOps. I am enrolled in a six-month
+                DevSecOps training program and am approaching four months
+                into the course.
+            </p>
 
-                    <span>
-                        Training Progress
-                    </span>
+            <br>
 
-                    <span id="progressText">
-                        67%
-                    </span>
+            <p>
+                My goal is to combine my professional discipline,
+                security mindset and technical knowledge to build a career
+                in cloud infrastructure, automation, cybersecurity and
+                DevSecOps.
+            </p>
 
-                </div>
+        </div>
 
-                <div class="progress-bar">
+    </div>
 
-                    <div
-                        class="progress"
-                        id="progressBar">
-                    </div>
+</section>
 
+
+<!-- EXPERIENCE -->
+<section id="experience">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Professional Experience</h2>
+            <p>Experience across multiple industries</p>
+        </div>
+
+        <div class="timeline">
+
+            <div class="job">
+
+                <h3>Emkan for Engineering and Contracting Services</h3>
+
+                <h4>Pipe Fitter Cum Rigger</h4>
+
+                <p>
+                    Worked in engineering and construction environments
+                    supporting pipe fitting, rigging operations,
+                    equipment handling and safe material movement.
+                    Followed workplace safety procedures and worked
+                    collaboratively with construction teams.
+                </p>
+
+            </div>
+
+
+            <div class="job">
+
+                <h3>City Nights Contracting LLC — Dubai, UAE</h3>
+
+                <h4>Security Personnel</h4>
+
+                <p>
+                    Responsible for maintaining security and safety,
+                    monitoring premises, controlling access and responding
+                    appropriately to incidents while maintaining
+                    professional communication with staff and visitors.
+                </p>
+
+            </div>
+
+
+            <div class="job">
+
+                <h3>Guinness Ghana Limited — Ahinsan</h3>
+
+                <h4>Warehouse Man</h4>
+
+                <p>
+                    Supported warehouse operations including receiving,
+                    moving, storing and handling materials, maintaining
+                    organized stock and following workplace safety
+                    procedures.
+                </p>
+
+            </div>
+
+
+            <div class="job">
+
+                <h3>Oak Plaza — Asokwa</h3>
+
+                <h4>Security Receptionist</h4>
+
+                <p>
+                    Assisted with reception and security responsibilities,
+                    monitored visitors and maintained a professional
+                    first point of contact while supporting the safety
+                    and security of the facility.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SKILLS -->
+<section id="skills" class="skills">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Skills</h2>
+            <p>Professional and technical capabilities</p>
+        </div>
+
+        <div class="skill-grid">
+
+            <div class="skill-card">
+                <h3>Linux</h3>
+                <p>
+                    Linux administration, terminal usage,
+                    system services, permissions and troubleshooting.
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Git & GitHub</h3>
+                <p>
+                    Version control, repositories, branches,
+                    commits, remote repositories and GPG-signed commits.
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>AWS</h3>
+                <p>
+                    EC2, IAM, S3, networking, security groups,
+                    route tables and cloud infrastructure concepts.
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Terraform</h3>
+                <p>
+                    Infrastructure as Code, Terraform configuration,
+                    planning, state management and infrastructure deployment.
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Docker</h3>
+                <p>
+                    Container fundamentals, images, containers,
+                    Docker CLI and containerized applications.
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>CI/CD</h3>
+                <p>
+                    Continuous integration, continuous delivery,
+                    automated testing and deployment concepts.
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Security</h3>
+                <p>
+                    Security awareness, least privilege,
+                    vulnerability scanning and shift-left security.
+                </p>
+            </div>
+
+            <div class="skill-card">
+                <h3>Construction & Rigging</h3>
+                <p>
+                    Pipe fitting, rigging, material handling,
+                    workplace safety and construction operations.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- DEVSECOPS JOURNEY -->
+<section id="devsecops" class="devsecops">
+
+    <div class="container">
+
+        <div class="section-title">
+            <h2>DevSecOps Journey</h2>
+            <p>Six-month DevSecOps training program</p>
+        </div>
+
+        <div class="journey">
+
+            <div class="journey-step">
+
+                <h3>01 — Linux</h3>
+
+                <p>
+                    Completed Linux fundamentals including terminal
+                    commands, permissions, services, networking and
+                    system administration.
+                </p>
+
+            </div>
+
+
+            <div class="journey-step">
+
+                <h3>02 — Git & GitHub</h3>
+
+                <p>
+                    Learned Git version control, repositories,
+                    branching, commits, remote repositories and
+                    secure commit signing using GPG.
+                </p>
+
+            </div>
+
+
+            <div class="journey-step">
+
+                <h3>03 — AWS</h3>
+
+                <p>
+                    Studied AWS cloud infrastructure including EC2,
+                    IAM, S3, networking, security groups and
+                    cloud security concepts.
+                </p>
+
+            </div>
+
+
+            <div class="journey-step">
+
+                <h3>04 — Terraform</h3>
+
+                <p>
+                    Learned Infrastructure as Code and how to
+                    provision and manage cloud infrastructure
+                    using Terraform.
+                </p>
+
+            </div>
+
+
+            <div class="journey-step">
+
+                <h3>05 — CI/CD</h3>
+
+                <p>
+                    Currently developing knowledge of continuous
+                    integration, continuous delivery and automated
+                    deployment pipelines.
+                </p>
+
+            </div>
+
+
+            <div class="journey-step">
+
+                <h3>06 — Next Steps</h3>
+
+                <p>
+                    Continuing toward Kubernetes, Ansible,
+                    GitHub Actions, container security and
+                    advanced DevSecOps practices.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+<section id="projects" class="projects">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <h2>Projects</h2>
+
+            <p>
+                Practical projects demonstrating my technical growth
+            </p>
+
+        </div>
+
+
+        <div class="project-grid">
+
+
+            <div class="project">
+
+                <h3>DevSecOps Portfolio</h3>
+
+                <p>
+                    A personal portfolio website built using HTML,
+                    CSS and JavaScript and hosted using GitHub Pages.
+                </p>
+
+                <div class="tech">
+                    HTML • CSS • JavaScript • Git • GitHub
                 </div>
 
             </div>
 
-            <p>
-                My objective is to build secure, automated and reliable
-                infrastructure while understanding the complete journey
-                from source code to cloud deployment.
-            </p>
 
-        </div>
+            <div class="project">
 
-    </section>
+                <h3>AWS Infrastructure</h3>
 
+                <p>
+                    Practical AWS infrastructure exercises involving
+                    EC2, IAM, networking, security groups and
+                    cloud architecture.
+                </p>
 
-    <!-- PROJECTS -->
-
-    <section id="projects" class="projects">
-
-        <div class="container">
-
-            <h2 class="section-title">
-                DevSecOps <span>Projects</span>
-            </h2>
-
-            <div class="project-grid">
-
-                <div class="project-card">
-
-                    <h3>Personal Portfolio</h3>
-
-                    <p>
-                        A responsive HTML, CSS and JavaScript portfolio
-                        website served through Nginx on an AWS EC2
-                        instance.
-                    </p>
-
+                <div class="tech">
+                    AWS • EC2 • IAM • Networking
                 </div>
 
+            </div>
 
-                <div class="project-card">
 
-                    <h3>AWS Infrastructure</h3>
+            <div class="project">
 
-                    <p>
-                        Hands-on practice deploying cloud infrastructure
-                        using AWS services and Infrastructure as Code
-                        with Terraform.
-                    </p>
+                <h3>Terraform Infrastructure</h3>
 
+                <p>
+                    Infrastructure as Code projects designed to
+                    provision AWS resources using Terraform.
+                </p>
+
+                <div class="tech">
+                    Terraform • AWS • Infrastructure as Code
                 </div>
 
-
-                <div class="project-card">
-
-                    <h3>CI/CD Pipeline</h3>
-
-                    <p>
-                        Building an automated workflow that connects
-                        source code management, security checks and
-                        application deployment.
-                    </p>
-
-                </div>
+            </div>
 
 
-                <div class="project-card">
+            <div class="project">
 
-                    <h3>Security Automation</h3>
+                <h3>CI/CD Pipeline</h3>
 
-                    <p>
-                        Exploring security scanning and the integration
-                        of security practices into the software delivery
-                        lifecycle.
-                    </p>
+                <p>
+                    Building automated workflows that integrate
+                    source control, security checks, testing and
+                    application deployment.
+                </p>
 
+                <div class="tech">
+                    GitHub Actions • CI/CD • Security
                 </div>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- CONTACT -->
+<!-- CONTACT -->
+<section id="contact" class="contact">
 
-    <section class="contact">
+    <div class="container">
 
-        <div class="container">
+        <div class="section-title">
 
-            <h2 class="section-title">
-                Let's <span>Connect</span>
-            </h2>
+            <h2>Contact</h2>
 
             <p>
-                I am interested in opportunities where I can continue
-                developing my DevSecOps, cloud and cybersecurity skills
-                while bringing the discipline and practical experience
-                gained from my previous professional career.
+                Let's connect and build something secure.
             </p>
-
-            <a
-                href="https://github.com/"
-                class="btn btn-primary"
-                target="_blank">
-                GitHub
-            </a>
 
         </div>
 
-    </section>
+
+        <div class="contact-box">
+
+            <p>
+                <strong>Name:</strong> Felix Amoah
+            </p>
+
+            <p>
+                <strong>Email:</strong>
+                scriptsmith.dev@yahoo.com
+            </p>
+
+            <p>
+                <strong>Role:</strong>
+                DevSecOps Engineer in Training
+            </p>
+
+            <p>
+                <strong>Location:</strong>
+                Qatar
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-    <!-- FOOTER -->
+<!-- FOOTER -->
+<footer>
 
-    <footer>
+    <p>
+        © <span id="year"></span> Felix Amoah.
+        Built with HTML, CSS, JavaScript, Git & DevSecOps principles.
+    </p>
 
-        <p>
-            © <span id="year"></span> Felix Amoah
-        </p>
-
-        <p>
-            DevSecOps Engineer in Training
-        </p>
-
-    </footer>
+</footer>
 
 
-    <!-- BACK TO TOP -->
+<!-- JAVASCRIPT -->
+<script>
 
-    <button id="topButton">
-        ↑
-    </button>
-
-
-    <!-- JAVASCRIPT -->
-
-    <script>
-
-        // Automatically update the copyright year
-
-        document.getElementById("year").textContent =
-            new Date().getFullYear();
+    // Automatically display the current year
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
 
 
-        // Back-to-top button
+    // Simple page-load message
+    window.addEventListener("load", function () {
 
-        const topButton =
-            document.getElementById("topButton");
+        const status = document.getElementById("status");
+
+        status.textContent =
+            "✓ Portfolio online";
+
+    });
 
 
-        window.addEventListener("scroll", function () {
+    // Simple navigation logging
+    document.querySelectorAll("nav a").forEach(function(link) {
 
-            if (window.scrollY > 300) {
+        link.addEventListener("click", function() {
 
-                topButton.style.display = "block";
-
-            } else {
-
-                topButton.style.display = "none";
-
-            }
+            console.log(
+                "Navigation:",
+                this.textContent.trim()
+            );
 
         });
 
+    });
 
-        topButton.addEventListener("click", function () {
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        });
-
-
-        // DevSecOps training progress
-
-        const monthsCompleted = 4;
-
-        const totalMonths = 6;
-
-        const percentage =
-            Math.round((monthsCompleted / totalMonths) * 100);
-
-
-        document.getElementById("progressBar")
-            .style.width = percentage + "%";
-
-
-        document.getElementById("progressText")
-            .textContent = percentage + "%";
-
-
-        // Console message
-
-        console.log(
-            "Welcome to Felix Amoah's DevSecOps portfolio."
-        );
-
-    </script>
+</script>
 
 </body>
 </html>
