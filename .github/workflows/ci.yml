@@ -1,0 +1,48 @@
+name: DevSecOps Portfolio CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    name: Validate Portfolio
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check required files
+        run: |
+          test -f index.html
+          test -f profile.jpg
+          test -f README.md
+          test -f SECURITY.md
+
+      - name: Validate HTML
+        run: |
+          grep -q "<html" index.html
+          grep -q "</html>" index.html
+          echo "HTML validation passed"
+
+      - name: Check for private keys
+        run: |
+          if grep -RniE \
+            --exclude-dir=.git \
+            --exclude="*.md" \
+            "BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY" .; then
+            echo "Private key detected!"
+            exit 1
+          fi
+
+          echo "No private keys detected"
+
+      - name: CI completed
+        run: echo "DevSecOps CI pipeline completed successfully"
