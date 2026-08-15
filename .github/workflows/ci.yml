@@ -44,5 +44,14 @@ jobs:
 
           echo "No private keys detected"
 
+      - name: Trivy filesystem security scan
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          severity: CRITICAL,HIGH
+          exit-code: '1'
+
+
       - name: CI completed
         run: echo "DevSecOps CI pipeline completed successfully"
