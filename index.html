@@ -292,6 +292,18 @@
             border: 1px solid #334155;
         }
 
+        .project-link {
+            display: inline-block;
+            margin-top: 18px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .project-link:hover {
+            transform: translateX(4px);
+        }
+
         .project h3 {
             color: #38bdf8;
             margin-bottom: 10px;
@@ -762,6 +774,32 @@
 
 
         <div class="project-grid">
+
+            <div class="project">
+
+                <h3>Secure Containerized DevSecOps Application</h3>
+
+                <p>
+                    A containerized Flask application built and deployed
+                    using Docker, Amazon ECR and Amazon ECS/Fargate.
+                    The project demonstrates secure containerization,
+                    multi-stage Docker builds, AWS networking and
+                    cloud deployment.
+                </p>
+
+                <div class="tech">
+                    Python • Flask • Docker • AWS • ECR • ECS/Fargate • CI/CD
+                </div>
+
+                <a href="https://github.com/scriptsmithdev/scriptsmith-app"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="project-link">
+                    View Project on GitHub →
+                </a>
+
+            </div>
+
 
 
             <div class="project">
