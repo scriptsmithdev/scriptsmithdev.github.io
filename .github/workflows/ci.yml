@@ -18,8 +18,8 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v6
-      with:
-        fetch-depth: 0
+        with:
+          fetch-depth: 0
 
       - name: Check required files
         run: |
@@ -27,6 +27,7 @@ jobs:
           test -f profile.jpg
           test -f README.md
           test -f SECURITY.md
+          echo "Required files found"
 
       - name: Validate HTML
         run: |
@@ -39,7 +40,6 @@ jobs:
         with:
           root: .
 
-
       - name: Check for private keys
         run: |
           if grep -RniE \
@@ -49,7 +49,6 @@ jobs:
             echo "Private key detected!"
             exit 1
           fi
-
           echo "No private keys detected"
 
       - name: Trivy filesystem security scan
@@ -64,7 +63,6 @@ jobs:
         uses: gitleaks/gitleaks-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
       - name: CI completed
         run: echo "DevSecOps CI pipeline completed successfully"
