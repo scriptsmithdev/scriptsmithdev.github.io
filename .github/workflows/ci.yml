@@ -17,7 +17,9 @@ jobs:
     steps:
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
 
       - name: Check required files
         run: |
@@ -59,7 +61,7 @@ jobs:
           exit-code: '1'
 
       - name: Gitleaks secret scan
-        uses: gitleaks/gitleaks-action@v2
+        uses: gitleaks/gitleaks-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
