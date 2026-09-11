@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Felix Amoah — DevSecOps Engineer in Training specializing in AWS, Docker, Terraform, CI/CD and Cloud Security.">
+
+    <meta name="keywords"
+          content="Felix Amoah, DevSecOps, AWS, Docker, Terraform, CI/CD, Cloud Security, Linux, GitHub">
+
+    <meta name="author" content="Felix Amoah">
+
+    <meta property="og:title"
+          content="Felix Amoah | DevSecOps Engineer in Training">
+
+    <meta property="og:description"
+          content="DevSecOps, Cloud Engineering, Automation and Security">
+
+    <meta property="og:type" content="website">
+
+    <title>Felix Amoah | DevSecOps Engineer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        :root {
+            --bg: #f8faff;
+            --surface: #ffffff;
+            --surface-soft: #f3f6ff;
+            --text: #111827;
+            --muted: #667085;
+            --primary: #5b4bff;
+            --primary-dark: #4033d6;
+            --blue: #2878ff;
+            --cyan: #19b5fe;
+            --border: #e6eaf2;
+            --shadow: 0 20px 60px rgba(35, 45, 90, 0.10);
+            --radius: 24px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(1120px, calc(100% - 40px));
+            margin: auto;
+        }
+
+        
+/* ================= DEVSECOPS GLASS BACKGROUND ================= */
+
+
+/* ================= TOOL POSITIONS ================= */
+
+.tool-docker {
+    top: 12%;
+    left: 6%;
+    transform: rotate(-7deg);
+    animation-delay: -2s;
+}
+
+.tool-kubernetes {
+    top: 21%;
+    right: 7%;
+    transform: scale(1.15) rotate(6deg);
+    animation-delay: -5s;
+}
+
+.tool-aws {
+    top: 46%;
+    left: 4%;
+    transform: rotate(5deg);
+    animation-delay: -7s;
+}
+
+.tool-terraform {
+    top: 64%;
+    right: 8%;
+    transform: rotate(-6deg);
+    animation-delay: -3s;
+}
+
+.tool-github {
+    top: 78%;
+    left: 12%;
+    transform: rotate(6deg);
+    animation-delay: -8s;
+}
+
+.tool-git {
+    top: 35%;
+    right: 18%;
+    transform: scale(0.85) rotate(-5deg);
+    animation-delay: -4s;
+}
+
+.tool-linux {
+    top: 15%;
+    left: 43%;
+    transform: scale(0.80) rotate(5deg);
+    animation-delay: -6s;
+}
+
+.tool-ansible {
+    top: 57%;
+    left: 21%;
+    transform: scale(0.85) rotate(-5deg);
+    animation-delay: -1s;
+}
+
+.tool-jenkins {
+    top: 82%;
+    right: 25%;
+    transform: scale(0.80) rotate(5deg);
+    animation-delay: -6s;
+}
+
+.tool-python {
+    top: 87%;
+    left: 47%;
+    transform: scale(0.80) rotate(5deg);
+    animation-delay: -3s;
+}
+
+.tool-nginx {
+    top: 32%;
+    left: 28%;
+    transform: scale(0.78) rotate(-5deg);
+    animation-delay: -9s;
+}
+
+.tool-trivy {
+    top: 52%;
+    right: 34%;
+    transform: scale(0.78) rotate(-6deg);
+    animation-delay: -7s;
+}
+
+.tool-grafana {
+    top: 9%;
+    right: 29%;
+    transform: scale(0.75) rotate(5deg);
+    animation-delay: -4s;
+}
+
+.tool-prometheus {
+    top: 70%;
+    left: 37%;
+    transform: scale(0.75) rotate(-5deg);
+    animation-delay: -8s;
+}
+
+/* ================= FLOATING ANIMATION ================= */
+
+@keyframes devsecopsFloat {
+
+    0%, 100% {
+        margin-top: 0;
+        margin-left: 0;
+    }
+
+    25% {
+        margin-top: -12px;
+        margin-left: 8px;
+    }
+
+    50% {
+        margin-top: 6px;
+        margin-left: -7px;
+    }
+
+    75% {
+        margin-top: 13px;
+        margin-left: 5px;
+    }
+}
+
+/* Keep actual website content above background */
+
+.navbar,
+main,
+footer {
+    position: relative;
+    z-index: 2;
+}
+
+/* Glass effect for content cards */
+
+.about-card,
+.focus-card,
+.skill-card,
+.experience-card {
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(16px);
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+
+    .tool-linux,
+    .tool-git,
+    .tool-nginx,
+    .tool-prometheus,
+    .tool-grafana {
+        display: none;
+    }
+}
+
+
+        
+/* ================= NAVIGATION ================= */
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(230, 234, 242, 0.8);
+        }
+
+        .nav-inner {
+            height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #475467;
+            transition: 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-github {
+            padding: 10px 17px;
+            background: #111827;
+            color: white !important;
+            border-radius: 10px;
+        }
+
+        .nav-github:hover {
+            background: var(--primary);
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 760px;
+            padding: 150px 0 100px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 650px;
+            height: 650px;
+            background: linear-gradient(
+                135deg,
+                rgba(91, 75, 255, 0.22),
+                rgba(40, 120, 255, 0.12)
+            );
+            border-radius: 50%;
+            filter: blur(10px);
+            top: -280px;
+            right: -180px;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(25, 181, 254, 0.08);
+            border-radius: 50%;
+            filter: blur(50px);
+            bottom: -200px;
+            left: -120px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #eef0ff;
+            color: var(--primary);
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 0 5px rgba(34,197,94,0.12);
+        }
+
+        .hero h1 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(3.3rem, 7vw, 5.8rem);
+            line-height: 0.98;
+            letter-spacing: -0.065em;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(
+                100deg,
+                var(--primary),
+                var(--blue),
+                var(--cyan)
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-title {
+            font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+            font-weight: 700;
+            color: #344054;
+            margin-bottom: 20px;
+        }
+
+        .hero-description {
+            max-width: 650px;
+            color: var(--muted);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 13px 21px;
+            border-radius: 12px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            transition: 0.25s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--blue));
+            color: white;
+            box-shadow: 0 12px 30px rgba(91, 75, 255, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 35px rgba(91, 75, 255, 0.32);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            background: white;
+            color: #344054;
+        }
+
+        .btn-outline:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Profile */
+
+        .profile-wrapper {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .profile-ring {
+            width: min(360px, 75vw);
+            height: min(360px, 75vw);
+            border-radius: 50%;
+            padding: 10px;
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--blue),
+                var(--cyan)
+            );
+            box-shadow:
+                0 30px 70px rgba(58, 74, 180, 0.20),
+                0 0 80px rgba(91, 75, 255, 0.12);
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            border-radius: 50%;
+            border: 7px solid white;
+        }
+
+        .floating-card {
+            position: absolute;
+            bottom: 25px;
+            left: 0;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 14px 18px;
+            box-shadow: var(--shadow);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .floating-card strong {
+            display: block;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+
+        /* ================= SECTIONS ================= */
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            max-width: 700px;
+            margin-bottom: 50px;
+        }
+
+        .section-number {
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-header h2 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            letter-spacing: -0.045em;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--muted);
+        }
+
+        /* ================= ABOUT ================= */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+        }
+
+        .about-card,
+        .focus-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 34px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-card p {
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .focus-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffffff,
+                    #f1f3ff
+                );
+        }
+
+        .focus-card h3 {
+            font-family: "Space Grotesk", sans-serif;
+            margin-bottom: 20px;
+            font-size: 1.35rem;
+        }
+
+        .focus-list {
+            list-style: none;
+        }
+
+        .focus-list li {
+            padding: 11px 0;
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+            color: #475467;
+        }
+
+        .focus-list li:last-child {
+            border-bottom: none;
+        }
+
+        .focus-list li::before {
+            content: "✓";
+            color: var(--primary);
+            margin-right: 10px;
+            font-weight: 800;
+        }
+
+        /* ================= SKILLS ================= */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .skill-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 24px;
+            transition: 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(91,75,255,0.35);
+            box-shadow: var(--shadow);
+        }
+
+        .skill-icon {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: #eef0ff;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .skill-card h3 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.05rem;
+            margin-bottom: 7px;
+        }
+
+        .skill-card p {
+            color: var(--muted);
+            font-size: 0.87rem;
+        }
+
+        /* ================= PROJECT ================= */
+
+        .featured-project {
+            position: relative;
+            overflow: hidden;
+            background: #101632;
+            color: white;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 0 30px 80px rgba(20, 30, 80, 0.18);
+        }
+
+        .featured-project::before {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(91,75,255,0.25);
+            filter: blur(60px);
+            right: -150px;
+            top: -200px;
+        }
+
+        .project-content {
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
+        }
+
+        .featured-label {
+            color: #9ba5ff;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .featured-project h3 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.05;
+            letter-spacing: -0.045em;
+            margin-bottom: 20px;
+        }
+
+        .featured-project p {
+            color: #b7c0d9;
+            max-width: 760px;
+            margin-bottom: 25px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .project-tag {
+            padding: 7px 12px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.06);
+            border-radius: 999px;
+            color: #dce2ff;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .project-btn {
+            display: inline-flex;
+            padding: 12px 18px;
+            border-radius: 11px;
+            background: white;
+            color: #111827;
+            font-weight: 700;
+            transition: 0.25s ease;
+        }
+
+        .project-btn:hover {
+            transform: translateY(-3px);
+            background: #e9e7ff;
+            color: var(--primary-dark);
+        }
+
+        .project-btn.secondary {
+            background: rgba(255,255,255,0.08);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        /* ================= EXPERIENCE ================= */
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .experience-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .experience-card .company {
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 7px;
+        }
+
+        .experience-card h3 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.35rem;
+            margin-bottom: 4px;
+        }
+
+        .experience-card .role {
+            color: #475467;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .experience-card p {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        /* ================= JOURNEY ================= */
+
+        .journey {
+            background: #101632;
+            color: white;
+        }
+
+        .journey .section-header p {
+            color: #aeb7d1;
+        }
+
+        .journey-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .journey-item {
+            padding: 22px;
+            border: 1px solid rgba(255,255,255,0.10);
+            background: rgba(255,255,255,0.045);
+            border-radius: 16px;
+        }
+
+        .journey-item span {
+            display: block;
+            color: #929cff;
+            font-size: 0.72rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .journey-item h3 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .journey-item p {
+            color: #aeb7d1;
+            font-size: 0.82rem;
+        }
+
+        .project-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 10px 0 18px;
+            color: #9fe8c3;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #48d597;
+            box-shadow: 0 0 14px rgba(72, 213, 151, 0.8);
+        }
+
+        .deployment-flow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 28px 0;
+            padding: 18px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            background: rgba(0,0,0,0.16);
+            overflow-x: auto;
+        }
+
+        .deployment-step {
+            min-width: 110px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .deployment-step strong {
+            color: #929cff;
+            font-size: 0.68rem;
+        }
+
+        .deployment-step span {
+            font-weight: 800;
+            font-size: 0.82rem;
+        }
+
+        .deployment-step small {
+            color: #8f99b5;
+            font-size: 0.68rem;
+        }
+
+        .deployment-arrow {
+            color: #929cff;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .journey-highlight {
+            margin-top: 28px;
+            padding: 32px;
+            border: 1px solid rgba(146, 156, 255, 0.25);
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(91, 75, 255, 0.14),
+                    rgba(40, 120, 255, 0.08)
+                );
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .journey-highlight::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(
+                180deg,
+                #929cff,
+                #2878ff
+            );
+        }
+
+        .journey-highlight h3 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        .journey-highlight p {
+            max-width: 850px;
+            color: #aeb7d1;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .journey-highlight .tech {
+            display: inline-block;
+            color: #cbd2ff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+
+        /* ================= CONTACT ================= */
+
+        .contact-box {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            background: linear-gradient(
+                135deg,
+                #5b4bff,
+                #2878ff
+            );
+            color: white;
+            border-radius: 30px;
+            padding: 70px 30px;
+            box-shadow: 0 30px 80px rgba(70, 75, 180, 0.22);
+        }
+
+        .contact-box::before {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: rgba(255,255,255,0.10);
+            border-radius: 50%;
+            filter: blur(20px);
+            left: -180px;
+            top: -180px;
+        }
+
+        .contact-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-box h2 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(2rem, 4vw, 3.3rem);
+            letter-spacing: -0.04em;
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            color: #e0e7ff;
+            max-width: 650px;
+            margin: 0 auto 28px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            padding: 13px 20px;
+            border-radius: 11px;
+            background: white;
+            color: #111827;
+            font-weight: 700;
+        }
+
+        .contact-btn.secondary {
+            background: rgba(255,255,255,0.10);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            padding: 35px 0;
+            border-top: 1px solid var(--border);
+            background: white;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-inner p {
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 18px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* ================= ANIMATIONS ================= */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text {
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .profile-wrapper {
+            animation: fadeUp 0.8s 0.15s ease both;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content,
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 130px;
+            }
+
+            .profile-wrapper {
+                order: -1;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .journey-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                width: min(100% - 28px, 1120px);
+            }
+
+            section {
+                padding: 70px 0;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 115px 0 70px;
+            }
+
+            .hero h1 {
+                font-size: 3.1rem;
+            }
+
+            .profile-ring {
+                width: 270px;
+                height: 270px;
+            }
+
+            .floating-card {
+                left: 5px;
+                bottom: 5px;
+            }
+
+            .skills-grid,
+            .journey-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-project {
+                padding: 30px 24px;
+                border-radius: 22px;
+            }
+
+            .about-card,
+            .focus-card,
+            .experience-card {
+                padding: 24px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+    .logo img { height: 42px; width: auto; max-width: 150px; object-fit: contain; display: block; }
+
+    </style>
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+<!-- ================= FLOATING DEVSECOPS TOOLS ================= -->
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+    <!-- ================= NAVIGATION ================= -->
+
+    <header class="navbar">
+        <div class="container nav-inner">
+
+            <a href="#home" class="logo">
+                <img src="15121.png" alt="Felix Amoah Logo">
+            </a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#journey">Journey</a></li>
+                    <li><a href="#contact">Contact</a></li>
+
+                    <li>
+                        <a
+                            class="nav-github"
+                            href="https://github.com/scriptsmithdev"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            GitHub
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section id="home" class="hero">
+
+            <div class="container hero-content">
+
+                <div class="hero-text">
+
+                    <div class="eyebrow">
+                        <span class="status-dot"></span>
+                        DevSecOps Engineer in Training
+                    </div>
+
+                    <h1>
+                        Felix<br>
+                        <span>Amoah.</span>
+                    </h1>
+
+                    <div class="hero-title">
+                        Cloud • Automation • Security
+                    </div>
+
+                    <p class="hero-description">
+                        Building practical skills in DevSecOps, cloud
+                        infrastructure, containerization, automation and
+                        security. I am focused on turning infrastructure
+                        into secure, repeatable and automated systems.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#projects" class="btn btn-primary">
+                            View My Projects →
+                        </a>
+
+                        <a
+                            href="https://github.com/scriptsmithdev"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="btn btn-outline">
+                            GitHub Profile
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-wrapper">
+
+                    <div class="profile-ring">
+                        <img
+                            src="profile.jpg"
+                            alt="Felix Amoah - DevSecOps Engineer in Training"
+                            class="profile-image">
+                    </div>
+
+                    <div class="floating-card">
+                        <strong>DevSecOps</strong>
+                        AWS • Docker • Terraform
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ABOUT ================= -->
+
+        <section id="about">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <div class="section-number">
+                        01 — About
+                    </div>
+
+                    <h2>
+                        Building my transition into DevSecOps.
+                    </h2>
+
+                    <p>
+                        Combining professional discipline with hands-on
+                        cloud and DevSecOps engineering.
+                    </p>
+
+                </div>
+
+
+                <div class="about-grid">
+
+                    <div class="about-card">
+
+                        <p>
+                            I am Felix Amoah, a DevSecOps Engineer in
+                            training focused on cloud infrastructure,
+                            automation, containerization and security.
+                        </p>
+
+                        <p>
+                            My professional background has developed my
+                            ability to work responsibly in structured,
+                            safety-conscious environments where attention
+                            to detail, teamwork and following procedures
+                            are essential.
+                        </p>
+
+                        <p>
+                            I am now applying those same principles to
+                            technology through hands-on projects involving
+                            Linux, Git, AWS, Terraform, Docker and CI/CD.
+                        </p>
+
+                    </div>
+
+
+                    <div class="focus-card">
+
+                        <h3>Current Focus</h3>
+
+                        <ul class="focus-list">
+                            <li>Cloud Engineering</li>
+                            <li>DevSecOps</li>
+                            <li>Infrastructure as Code</li>
+                            <li>Containerization</li>
+                            <li>CI/CD Automation</li>
+                            <li>Cloud Security</li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SKILLS ================= -->
+
+        <section id="skills">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <div class="section-number">
+                        02 — Technical Skills
+                    </div>
+
+                    <h2>
+                        Technologies I am building with.
+                    </h2>
+
+                    <p>
+                        Practical technologies forming the foundation
+                        of my DevSecOps engineering journey.
+                    </p>
+
+                </div>
+
+
+                <div class="skills-grid">
+
+                    <div class="skill-card">
+                        <div class="skill-icon">L</div>
+                        <h3>Linux</h3>
+                        <p>Ubuntu, CLI, system administration and troubleshooting.</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">G</div>
+                        <h3>Git & GitHub</h3>
+                        <p>Version control, branching, repositories and signed commits.</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">A</div>
+                        <h3>AWS</h3>
+                        <p>EC2, IAM, VPC, networking, ECR and ECS.</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">T</div>
+                        <h3>Terraform</h3>
+                        <p>Infrastructure as Code and repeatable cloud provisioning.</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">D</div>
+                        <h3>Docker</h3>
+                        <p>Images, containers, networking and multi-stage builds.</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">C</div>
+                        <h3>CI/CD</h3>
+                        <p>Automated validation, security checks, builds and deployment.</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">S</div>
+                        <h3>Security</h3>
+                        <p>Secret management, scanning and least-privilege principles.</p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-icon">P</div>
+                        <h3>Python</h3>
+                        <p>Flask applications, automation and scripting.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROJECT ================= -->
+
+        <section id="projects">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <div class="section-number">
+                        03 — Featured Project
+                    </div>
+
+                    <h2>
+                        Hands-on engineering.
+                    </h2>
+
+                    <p>
+                        A practical project demonstrating how I apply
+                        DevSecOps concepts to a real deployment workflow.
+                    </p>
+
+                </div>
+
+
+                <div class="featured-project">
+
+                    <div class="project-content">
+
+                        <div class="featured-label">
+                            ★ FEATURED DEVSECOPS PROJECT
+                        </div>
+
+                        <div class="project-status">
+                            <span class="status-dot"></span>
+                            AWS DEPLOYMENT PROJECT
+                        </div>
+
+                        <h3>
+                            Secure Containerized<br>
+                            DevSecOps Application
+                        </h3>
+
+                        <p>
+                            A practical Python Flask application
+                            containerized with Docker, published to Amazon
+                            ECR and deployed on Amazon ECS/Fargate. The
+                            project demonstrates the practical workflow of
+                            building, securing and deploying a containerized
+                            application in AWS.
+                        </p>
+
+                        <div class="project-tags">
+
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Flask</span>
+                            <span class="project-tag">Docker</span>
+                            <span class="project-tag">AWS ECR</span>
+                            <span class="project-tag">AWS ECS/Fargate</span>
+                            <span class="project-tag">CI/CD</span>
+                            <span class="project-tag">Cloud Security</span>
+
+                        </div>
+
+                        <div class="deployment-flow">
+
+                            <div class="deployment-step">
+                                <strong>01</strong>
+                                <span>Build</span>
+                                <small>Python + Flask</small>
+                            </div>
+
+                            <div class="deployment-arrow">→</div>
+
+                            <div class="deployment-step">
+                                <strong>02</strong>
+                                <span>Containerize</span>
+                                <small>Docker</small>
+                            </div>
+
+                            <div class="deployment-arrow">→</div>
+
+                            <div class="deployment-step">
+                                <strong>03</strong>
+                                <span>Registry</span>
+                                <small>Amazon ECR</small>
+                            </div>
+
+                            <div class="deployment-arrow">→</div>
+
+                            <div class="deployment-step">
+                                <strong>04</strong>
+                                <span>Deploy</span>
+                                <small>ECS/Fargate</small>
+                            </div>
+
+                        </div>
+
+                        <div class="project-buttons">
+
+                            <a
+                                href="https://github.com/scriptsmithdev/scriptsmith-app"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-btn">
+                                View Project on GitHub →
+                            </a>
+
+                            <a
+                                href="https://github.com/scriptsmithdev"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-btn secondary">
+                                More Projects
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= BLOG / ENGINEERING JOURNAL ================= -->
+
+        <!-- BLOG:START -->
+
+        <section id="blog">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <div class="section-number">
+                        04 — Engineering Journal
+                    </div>
+
+                    <h2>
+                        What I'm learning, building and breaking.
+                    </h2>
+
+                    <p>
+                        Follow my journey as I develop practical
+                        DevSecOps skills through hands-on projects,
+                        labs, troubleshooting and daily learning.
+                    </p>
+
+                </div>
+
+                <div class="blog-preview">
+
+                    <p>
+                        My engineering journal is coming soon.
+                    </p>
+
+                    <a href="blog/index.html">
+                        Visit the Engineering Journal →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- BLOG:END -->
+
+        <!-- ================= EXPERIENCE ================= -->
+
+        <section id="experience">
+
+            <div class="container">
+
+                <div class="section-header">
+
+                    <div class="section-number">
+                        05 — Professional Experience
+                    </div>
+
+                    <h2>
+                        Experience beyond technology.
+                    </h2>
+
+                    <p>
+                        Professional experience that has strengthened my
+                        discipline, safety awareness, teamwork and
+                        responsibility.
+                    </p>
+
+                </div>
+
+
+                <div class="experience-grid">
+
+                    <div class="experience-card">
+
+                        <div class="company">
+                            EMKAN for Engineering & Contracting Services
+                        </div>
+
+                        <h3>
+                            Assistant Pipe Fitter Cum Rigger
+                        </h3>
+
+                        <div class="role">
+                            Engineering & Construction
+                        </div>
+
+                        <p>
+                            Working in a structured engineering environment
+                            supporting pipe fitting, rigging, material
+                            handling, workplace safety and team-based
+                            operations.
+                        </p>
+
+                    </div>
+
+
+                    <div class="experience-card">
+
+                        <div class="company">
+                            City Nights Contracting LLC — Dubai
+                        </div>
+
+                        <h3>
+                            Security Personnel
+                        </h3>
+
+                        <div class="role">
+                            Security Operations
+                        </div>
+
+                        <p>
+                            Responsible for maintaining security awareness,
+                            monitoring activities, controlling access and
+                            working responsibly in a professional environment.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DEVSECOPS JOURNEY ================= -->
+
+<section id="journey" class="journey">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <div class="section-number">
+                06 — DevSecOps Journey
+            </div>
+
+            <h2>
+                Building practical DevSecOps capability.
+            </h2>
+
+            <p>
+                A hands-on learning journey focused on cloud infrastructure,
+                automation, containerization, CI/CD and secure engineering.
+            </p>
+
+        </div>
+
+        <div class="journey-grid">
+
+            <div class="journey-item">
+                <span>01</span>
+                <h3>Linux</h3>
+                <p>
+                    Completed — command line, system administration,
+                    permissions, processes and troubleshooting.
+                </p>
+            </div>
+
+            <div class="journey-item">
+                <span>02</span>
+                <h3>Git & GitHub</h3>
+                <p>
+                    Completed — version control, branching, repositories,
+                    collaboration and GPG-signed commits.
+                </p>
+            </div>
+
+            <div class="journey-item">
+                <span>03</span>
+                <h3>AWS</h3>
+                <p>
+                    Completed — cloud infrastructure, IAM, networking,
+                    EC2, ECR, ECS and security groups.
+                </p>
+            </div>
+
+            <div class="journey-item">
+                <span>04</span>
+                <h3>Terraform</h3>
+                <p>
+                    Completed — Infrastructure as Code and automated
+                    provisioning of cloud resources.
+                </p>
+            </div>
+
+            <div class="journey-item">
+                <span>05</span>
+                <h3>Docker</h3>
+                <p>
+                    Completed — containerization, Dockerfiles, images,
+                    containers, registries and deployment workflows.
+                </p>
+            </div>
+
+            <div class="journey-item">
+                <span>06</span>
+                <h3>CI/CD</h3>
+                <p>
+                    Completed — automated workflows, validation,
+                    security checks, builds and deployment pipelines.
+                </p>
+            </div>
+
+            <div class="journey-item">
+                <span>07</span>
+                <h3>Kubernetes</h3>
+                <p>
+                    Nearly complete — container orchestration,
+                    deployments, services, networking and workloads.
+                </p>
+            </div>
+
+            <div class="journey-item">
+                <span>08</span>
+                <h3>DevSecOps Security</h3>
+                <p>
+                    Applying shift-left security, secret management,
+                    least privilege and container security practices.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="journey-highlight">
+
+            <h3>Practical Cloud Deployment</h3>
+
+            <p>
+                Built and deployed a containerized Flask application using
+                Docker, Amazon ECR and Amazon ECS/Fargate. The project
+                demonstrates containerization, cloud networking, IAM,
+                security practices and production-oriented deployment.
+            </p>
+
+            <div class="tech">
+                Python • Flask • Docker • AWS • ECR • ECS/Fargate • CI/CD
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+        <section id="contact">
+
+            <div class="container">
+
+                <div class="contact-box">
+
+                    <div class="contact-content">
+
+                        <h2>
+                            Let's build secure systems.
+                        </h2>
+
+                        <p>
+                            I am actively developing my career in DevSecOps,
+                            Cloud Engineering and Cloud Security. If you are
+                            looking for someone who is committed to learning,
+                            building and improving, let's connect.
+                        </p>
+
+                        <div class="contact-buttons">
+
+                            <a
+                                href="mailto:scriptsmith.dev@yahoo.com"
+                                class="contact-btn">
+                                Contact Me
+                            </a>
+
+                            <a
+                                href="https://github.com/scriptsmithdev"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="contact-btn secondary">
+                                GitHub →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="container footer-inner">
+
+            <p>
+                © 2026 Felix Amoah. DevSecOps Engineer in Training.
+            </p>
+
+            <div class="footer-links">
+
+                <a
+                    href="https://github.com/scriptsmithdev"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    GitHub
+                </a>
+
+                <a href="#home">
+                    Back to top ↑
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

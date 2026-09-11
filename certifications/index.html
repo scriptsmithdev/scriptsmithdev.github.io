@@ -279,21 +279,10 @@ section {
     color: var(--muted);
 }
 
-footer {
-    padding: 35px 0;
-    border-top: 1px solid var(--border);
-    background: white;
-}
-
 .footer-inner {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-}
-
-footer p {
-    color: var(--muted);
-    font-size: .82rem;
 }
 
 @media (max-width: 850px) {
@@ -329,10 +318,172 @@ footer p {
     }
 }
 
-    </style>
+    
+/* ================= PAGE-SPECIFIC DEVSECOPS THEME ================= */
+
+body.page-certifications {
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            #4c1d95 0%,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            #2e1065 0%,
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #13051f,
+            #2e1065
+        );
+
+    background-attachment: fixed;
+    color: #f8fafc;
+}
+
+body.page-certifications::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: .55;
+    
+            background-image:
+                radial-gradient(circle, rgba(255,255,255,.10) 1px, transparent 1px);
+            background-size: 55px 55px;
+        
+}
+
+body.page-certifications .hero {
+    position: relative;
+}
+
+body.page-certifications h1,
+body.page-certifications h2,
+body.page-certifications h3 {
+    color: #f8fafc;
+}
+
+body.page-certifications .eyebrow,
+body.page-certifications .section-number {
+    color: #c084fc;
+}
+
+body.page-certifications .gradient {
+    background: linear-gradient(
+        90deg,
+        #c084fc,
+        #ffffff
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+body.page-certifications .btn-primary {
+    background: #c084fc;
+    color: #020617;
+}
+
+body.page-certifications .btn-primary:hover {
+    filter: brightness(1.12);
+}
+
+body.page-certifications .btn-outline:hover {
+    border-color: #c084fc;
+    color: #c084fc;
+}
+
+body.page-certifications .card,
+body.page-certifications .project-card,
+body.page-certifications .skill-card,
+body.page-certifications .highlight {
+    background: rgba(15, 23, 42, .68);
+    border-color: rgba(255,255,255,.10);
+    backdrop-filter: blur(10px);
+}
+
+body.page-certifications .navbar {
+    background: rgba(2, 6, 23, .78);
+    backdrop-filter: blur(14px);
+}
+
+body.page-certifications .
+
+@media (max-width: 700px) {
+    body.page-certifications {
+        background-attachment: scroll;
+    }
+}
+
+
+/* ================= PAGE BACKGROUND ================= */
+
+body {
+    background:
+        radial-gradient(circle at 15% 20%, #332a0d 0%, transparent 28%),
+        radial-gradient(circle at 85% 75%, #4a3a12 0%, transparent 30%),
+        linear-gradient(135deg, #1b1608, #332a0d 55%, #4a3a12);
+    background-attachment: fixed;
+    color: #f4f7fb;
+}
+
+/* Subtle DevSecOps technical grid */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.10;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 45px 45px;
+}
+
+main,
+section,
+header,
+
+.container {
+    position: relative;
+}
+
+/* ================= END PAGE BACKGROUND ================= */
+
+
+/* ================= FOOTER ================= */
+
+
+/* ================= SITE FOOTER ================= */
+
+.site-footer {
+    width: 100% !important;
+    margin: 80px 0 0 0 !important;
+    padding: 40px 20px !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    text-align: center !important;
+    clear: both !important;
+}
+
+.site-footer p {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+</style>
 </head>
 
-<body>
+<body class="page-certifications">
 
 
 <header class="navbar">
@@ -460,14 +611,8 @@ footer p {
 </main>
 
 
-<footer>
-    <div class="container footer-inner">
-        <p>© 2026 Felix Amoah. DevSecOps Engineer in Training.</p>
-
-        <p>
-            AWS • Docker • Terraform • Kubernetes • CI/CD • Security
-        </p>
-    </div>
+<footer class="site-footer">
+    <p><strong>Felix@2026</strong></p>
 </footer>
 
 

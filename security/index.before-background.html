@@ -279,10 +279,21 @@ section {
     color: var(--muted);
 }
 
+footer {
+    padding: 35px 0;
+    border-top: 1px solid var(--border);
+    background: white;
+}
+
 .footer-inner {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+}
+
+footer p {
+    color: var(--muted);
+    font-size: .82rem;
 }
 
 @media (max-width: 850px) {
@@ -318,173 +329,10 @@ section {
     }
 }
 
-    
-/* ================= PAGE-SPECIFIC DEVSECOPS THEME ================= */
-
-body.page-security {
-    background:
-        radial-gradient(
-            circle at 15% 15%,
-            #4c0519 0%,
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 85% 85%,
-            #3f0a12 0%,
-            transparent 40%
-        ),
-        linear-gradient(
-            135deg,
-            #180407,
-            #3f0a12
-        );
-
-    background-attachment: fixed;
-    color: #f8fafc;
-}
-
-body.page-security::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
-    opacity: .55;
-    
-            background-image:
-                linear-gradient(135deg, rgba(255,255,255,.025) 25%, transparent 25%),
-                linear-gradient(315deg, rgba(255,255,255,.025) 25%, transparent 25%);
-            background-size: 70px 70px;
-        
-}
-
-body.page-security .hero {
-    position: relative;
-}
-
-body.page-security h1,
-body.page-security h2,
-body.page-security h3 {
-    color: #f8fafc;
-}
-
-body.page-security .eyebrow,
-body.page-security .section-number {
-    color: #fb7185;
-}
-
-body.page-security .gradient {
-    background: linear-gradient(
-        90deg,
-        #fb7185,
-        #ffffff
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-body.page-security .btn-primary {
-    background: #fb7185;
-    color: #020617;
-}
-
-body.page-security .btn-primary:hover {
-    filter: brightness(1.12);
-}
-
-body.page-security .btn-outline:hover {
-    border-color: #fb7185;
-    color: #fb7185;
-}
-
-body.page-security .card,
-body.page-security .project-card,
-body.page-security .skill-card,
-body.page-security .highlight {
-    background: rgba(15, 23, 42, .68);
-    border-color: rgba(255,255,255,.10);
-    backdrop-filter: blur(10px);
-}
-
-body.page-security .navbar {
-    background: rgba(2, 6, 23, .78);
-    backdrop-filter: blur(14px);
-}
-
-body.page-security .
-
-@media (max-width: 700px) {
-    body.page-security {
-        background-attachment: scroll;
-    }
-}
-
-
-/* ================= PAGE BACKGROUND ================= */
-
-body {
-    background:
-        radial-gradient(circle at 15% 20%, #351016 0%, transparent 28%),
-        radial-gradient(circle at 85% 75%, #4b171e 0%, transparent 30%),
-        linear-gradient(135deg, #1b090d, #351016 55%, #4b171e);
-    background-attachment: fixed;
-    color: #f4f7fb;
-}
-
-/* Subtle DevSecOps technical grid */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0.10;
-    background-image:
-        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
-    background-size: 45px 45px;
-}
-
-main,
-section,
-header,
-
-.container {
-    position: relative;
-}
-
-/* ================= END PAGE BACKGROUND ================= */
-
-
-/* ================= FOOTER ================= */
-
-
-/* ================= SITE FOOTER ================= */
-
-.site-footer {
-    width: 100% !important;
-    margin: 80px 0 0 0 !important;
-    padding: 40px 20px !important;
-    box-sizing: border-box !important;
-    display: block !important;
-    text-align: center !important;
-    clear: both !important;
-}
-
-.site-footer p {
-    display: block !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    text-align: center !important;
-}
-
-</style>
+    </style>
 </head>
 
-<body class="page-security">
+<body>
 
 
 <header class="navbar">
@@ -624,8 +472,14 @@ header,
 </main>
 
 
-<footer class="site-footer">
-    <p><strong>Felix@2026</strong></p>
+<footer>
+    <div class="container footer-inner">
+        <p>© 2026 Felix Amoah. DevSecOps Engineer in Training.</p>
+
+        <p>
+            AWS • Docker • Terraform • Kubernetes • CI/CD • Security
+        </p>
+    </div>
 </footer>
 
 

@@ -279,21 +279,10 @@ section {
     color: var(--muted);
 }
 
-footer {
-    padding: 35px 0;
-    border-top: 1px solid var(--border);
-    background: white;
-}
-
 .footer-inner {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-}
-
-footer p {
-    color: var(--muted);
-    font-size: .82rem;
 }
 
 @media (max-width: 850px) {
@@ -329,10 +318,174 @@ footer p {
     }
 }
 
-    </style>
+    
+/* ================= PAGE-SPECIFIC DEVSECOPS THEME ================= */
+
+body.page-contact {
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            #134e4a 0%,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            #0f2928 0%,
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #021514,
+            #0f2928
+        );
+
+    background-attachment: fixed;
+    color: #f8fafc;
+}
+
+body.page-contact::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: .55;
+    
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,.08) 0 2px, transparent 3px),
+                radial-gradient(circle at 80% 30%, rgba(255,255,255,.06) 0 2px, transparent 3px),
+                radial-gradient(circle at 40% 75%, rgba(255,255,255,.05) 0 2px, transparent 3px);
+            background-size: 180px 180px;
+        
+}
+
+body.page-contact .hero {
+    position: relative;
+}
+
+body.page-contact h1,
+body.page-contact h2,
+body.page-contact h3 {
+    color: #f8fafc;
+}
+
+body.page-contact .eyebrow,
+body.page-contact .section-number {
+    color: #2dd4bf;
+}
+
+body.page-contact .gradient {
+    background: linear-gradient(
+        90deg,
+        #2dd4bf,
+        #ffffff
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+body.page-contact .btn-primary {
+    background: #2dd4bf;
+    color: #020617;
+}
+
+body.page-contact .btn-primary:hover {
+    filter: brightness(1.12);
+}
+
+body.page-contact .btn-outline:hover {
+    border-color: #2dd4bf;
+    color: #2dd4bf;
+}
+
+body.page-contact .card,
+body.page-contact .project-card,
+body.page-contact .skill-card,
+body.page-contact .highlight {
+    background: rgba(15, 23, 42, .68);
+    border-color: rgba(255,255,255,.10);
+    backdrop-filter: blur(10px);
+}
+
+body.page-contact .navbar {
+    background: rgba(2, 6, 23, .78);
+    backdrop-filter: blur(14px);
+}
+
+body.page-contact .
+
+@media (max-width: 700px) {
+    body.page-contact {
+        background-attachment: scroll;
+    }
+}
+
+
+/* ================= PAGE BACKGROUND ================= */
+
+body {
+    background:
+        radial-gradient(circle at 15% 20%, #281541 0%, transparent 28%),
+        radial-gradient(circle at 85% 75%, #3b1d5c 0%, transparent 30%),
+        linear-gradient(135deg, #130c20, #281541 55%, #3b1d5c);
+    background-attachment: fixed;
+    color: #f4f7fb;
+}
+
+/* Subtle DevSecOps technical grid */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.10;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 45px 45px;
+}
+
+main,
+section,
+header,
+
+.container {
+    position: relative;
+}
+
+/* ================= END PAGE BACKGROUND ================= */
+
+
+/* ================= FOOTER ================= */
+
+
+/* ================= SITE FOOTER ================= */
+
+.site-footer {
+    width: 100% !important;
+    margin: 80px 0 0 0 !important;
+    padding: 40px 20px !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    text-align: center !important;
+    clear: both !important;
+}
+
+.site-footer p {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+</style>
 </head>
 
-<body>
+<body class="page-contact">
 
 
 <header class="navbar">
@@ -441,14 +594,8 @@ footer p {
 </main>
 
 
-<footer>
-    <div class="container footer-inner">
-        <p>© 2026 Felix Amoah. DevSecOps Engineer in Training.</p>
-
-        <p>
-            AWS • Docker • Terraform • Kubernetes • CI/CD • Security
-        </p>
-    </div>
+<footer class="site-footer">
+    <p><strong>Felix@2026</strong></p>
 </footer>
 
 

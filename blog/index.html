@@ -1,113 +1,568 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kubernetes: My First Steps into Container Orchestration</title>
+
+    <title>Engineering Journal | Felix Amoah</title>
+
+    <meta name="description"
+          content="Felix Amoah's DevSecOps Engineering Journal — practical notes, experiments, lessons and projects from his journey into DevSecOps.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #f4f7fb;
+            background:
+                radial-gradient(circle at 15% 20%, #4a2b19 0%, transparent 28%),
+                radial-gradient(circle at 85% 75%, #6b3b1f 0%, transparent 30%),
+                linear-gradient(135deg, #1c120b, #332016 55%, #4a2b19);
+            background-attachment: fixed;
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.08;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 45px 45px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1120px, calc(100% - 40px));
+            margin: auto;
+        }
+
+        /* NAVIGATION */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(14px);
+            background: rgba(10, 10, 12, 0.82);
+            border-bottom: 1px solid rgba(255,255,255,0.10);
+        }
+
+        .nav-inner {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo img {
+            height: 42px;
+            width: auto;
+            max-width: 150px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: #d8dee7;
+            transition: 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+
+        .nav-github {
+            padding: 8px 14px;
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 8px;
+        }
+
+        /* HERO */
+
+        .journal-hero {
+            padding: 110px 0 80px;
+            max-width: 900px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin-bottom: 22px;
+            padding: 7px 13px;
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.06);
+            color: #ffcf9d;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-size: clamp(48px, 8vw, 82px);
+            line-height: 1;
+            letter-spacing: -3px;
+            margin-bottom: 28px;
+        }
+
+        .gradient {
+            background: linear-gradient(90deg, #ffffff, #ffc98e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            max-width: 700px;
+            color: #d2d7de;
+            font-size: 19px;
+        }
+
+        /* SECTION */
+
+        section {
+            padding: 70px 0;
+        }
+
+        .section-label {
+            color: #ffcf9d;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-size: clamp(30px, 5vw, 46px);
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        /* FEATURED ARTICLE */
+
+        .featured {
+            display: grid;
+            grid-template-columns: 1.5fr 0.8fr;
+            gap: 35px;
+            padding: 38px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.14);
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(12px);
+        }
+
+        .featured h3 {
+            font-size: 32px;
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .featured p {
+            color: #cbd2da;
+            margin-bottom: 22px;
+        }
+
+        .article-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            padding: 5px 10px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.09);
+            border: 1px solid rgba(255,255,255,0.12);
+            font-size: 12px;
+            color: #e8edf3;
+        }
+
+        .read-button {
+            display: inline-block;
+            padding: 11px 18px;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #161616;
+            font-weight: 700;
+            transition: 0.2s ease;
+        }
+
+        .read-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .article-number {
+            font-size: 100px;
+            font-weight: 800;
+            color: rgba(255,255,255,0.08);
+            text-align: right;
+        }
+
+        /* NOTES */
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .note {
+            padding: 26px;
+            min-height: 190px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(0,0,0,0.18);
+            transition: 0.25s ease;
+        }
+
+        .note:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.07);
+        }
+
+        .note-number {
+            color: #ffcf9d;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .note h3 {
+            margin: 15px 0 10px;
+            font-size: 19px;
+        }
+
+        .note p {
+            color: #bfc7d0;
+            font-size: 14px;
+        }
+
+        /* PHILOSOPHY */
+
+        .journal-principle {
+            max-width: 800px;
+            padding: 40px;
+            border-left: 3px solid #ffb86b;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .journal-principle p {
+            color: #d5dbe2;
+            font-size: 19px;
+        }
+
+        /* FOOTER */
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+            .nav-inner {
+                flex-direction: column;
+                padding: 18px 0;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .featured {
+                grid-template-columns: 1fr;
+            }
+
+            .article-number {
+                display: none;
+            }
+
+            .notes-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: min(100% - 28px, 1120px);
+            }
+
+            .journal-hero {
+                padding: 80px 0 55px;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+
+            .featured {
+                padding: 25px;
+            }
+
+            .notes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .journal-principle {
+                padding: 25px;
+            }
+        }
+    
+/* ================= FOOTER ================= */
+
+
+/* ================= SITE FOOTER ================= */
+
+.site-footer {
+    width: 100% !important;
+    margin: 80px 0 0 0 !important;
+    padding: 40px 20px !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    text-align: center !important;
+    clear: both !important;
+}
+
+.site-footer p {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+</style>
 </head>
 
 <body>
 
-```
-<article>
-    <header>
-        <h1>Kubernetes: My First Steps into Container Orchestration</h1>
-        <p><strong>By Felix Amoah</strong> | DevSecOps Bootcamp</p>
-        <p>Week 1 — Kubernetes</p>
-    </header>
+<header class="navbar">
+    <div class="container nav-inner">
 
-    <section>
-        <h2>Getting Started with Kubernetes</h2>
+        <a href="/index.html" class="logo">
+            <img src="/15121.png" alt="Felix Amoah Logo">
+        </a>
 
-        <p>
-            As part of my DevSecOps journey, I recently started learning Kubernetes.
-            After working with Docker and understanding how containers are created and
-            managed, Kubernetes introduced me to the bigger picture: how to manage
-            containers at scale.
-        </p>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/about/index.html">About</a></li>
+                <li><a href="/projects/index.html">Projects</a></li>
+                <li><a href="/labs/index.html">Labs</a></li>
+                <li><a href="/blog/index.html">Journal</a></li>
+                <li><a href="/skills/index.html">Skills</a></li>
+                <li><a href="/certifications/index.html">Certifications</a></li>
+                <li><a href="/security/index.html">Security</a></li>
+                <li><a href="/resume/index.html">Resume</a></li>
+                <li><a href="/contact/index.html">Contact</a></li>
+                <li>
+                    <a class="nav-github"
+                       href="https://github.com/scriptsmithdev"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        GitHub
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-        <p>
-            Kubernetes is a container orchestration platform that automates the
-            deployment, scaling, and management of containerized applications.
-            Instead of manually starting and monitoring individual containers,
-            Kubernetes allows us to describe the desired state of our application
-            and continuously works to maintain that state.
-        </p>
+    </div>
+</header>
+
+<main>
+
+    <section class="journal-hero">
+        <div class="container">
+
+            <div class="eyebrow">
+                DEVSECOPS ENGINEERING JOURNAL
+            </div>
+
+            <h1>
+                Learn.<br>
+                Build.<br>
+                <span class="gradient">Document.</span>
+            </h1>
+
+            <p class="hero-description">
+                A practical record of my DevSecOps journey —
+                documenting what I learn, what I build,
+                what breaks, and how I solve it.
+            </p>
+
+        </div>
     </section>
 
     <section>
-        <h2>Why Kubernetes Matters in DevSecOps</h2>
+        <div class="container">
 
-        <p>
-            One thing I am beginning to understand is that Kubernetes is not just
-            about running containers. It also becomes an important part of modern
-            CI/CD and DevSecOps workflows.
-        </p>
+            <div class="section-label">
+                LATEST ENTRY
+            </div>
 
-        <p>
-            A typical workflow can involve a developer pushing code to GitHub,
-            a CI/CD pipeline building a Docker image, security tools scanning the
-            image, and Kubernetes eventually deploying that application into a
-            cluster.
-        </p>
+            <h2>Featured Article</h2>
 
-        <p>
-            This makes Kubernetes an important skill for anyone interested in
-            cloud infrastructure, automation, and DevSecOps engineering.
-        </p>
+            <article class="featured">
+
+                <div>
+                    <div class="article-meta">
+                        <span class="tag">Kubernetes</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">DevSecOps</span>
+                        <span class="tag">August 2026</span>
+                    </div>
+
+                    <h3>
+                        Kubernetes: My First Steps into
+                        Container Orchestration
+                    </h3>
+
+                    <p>
+                        My first practical experience working with
+                        Kubernetes and Minikube — from creating a
+                        cluster and deploying containers to working
+                        with pods, deployments and services.
+                    </p>
+
+                    <a class="read-button" href="/blog/kubernetes-first-steps/">
+                        Read Article →
+                    </a>
+                </div>
+
+                <div class="article-number">
+                    01
+                </div>
+
+            </article>
+
+        </div>
     </section>
 
     <section>
-        <h2>My First Kubernetes Environment</h2>
+        <div class="container">
 
-        <p>
-            For my learning environment, I am using Minikube to run Kubernetes
-            locally. Minikube provides a lightweight Kubernetes cluster that is
-            useful for learning and experimenting without requiring a full cloud
-            environment.
-        </p>
+            <div class="section-label">
+                ENGINEERING NOTES
+            </div>
 
-        <p>
-            Some of the commands I have started working with include
-            <code>minikube start</code>, <code>kubectl get nodes</code>,
-            <code>kubectl get pods</code>, and <code>kubectl describe pod</code>.
-        </p>
+            <h2>Things I'm Learning</h2>
+
+            <div class="notes-grid">
+
+                <article class="note">
+                    <div class="note-number">01</div>
+                    <h3>Kubernetes & Minikube</h3>
+                    <p>
+                        Learning containers, pods, deployments,
+                        services, namespaces and cluster management.
+                    </p>
+                </article>
+
+                <article class="note">
+                    <div class="note-number">02</div>
+                    <h3>Docker</h3>
+                    <p>
+                        Building images, managing containers,
+                        networking and containerized applications.
+                    </p>
+                </article>
+
+                <article class="note">
+                    <div class="note-number">03</div>
+                    <h3>CI/CD</h3>
+                    <p>
+                        Building automated pipelines that test,
+                        validate and secure application changes.
+                    </p>
+                </article>
+
+                <article class="note">
+                    <div class="note-number">04</div>
+                    <h3>Terraform & AWS</h3>
+                    <p>
+                        Exploring infrastructure as code and
+                        automated cloud infrastructure.
+                    </p>
+                </article>
+
+                <article class="note">
+                    <div class="note-number">05</div>
+                    <h3>Security Scanning</h3>
+                    <p>
+                        Using tools such as Trivy and Gitleaks
+                        to identify security issues early.
+                    </p>
+                </article>
+
+                <article class="note">
+                    <div class="note-number">06</div>
+                    <h3>Linux & Automation</h3>
+                    <p>
+                        Working with Linux, Bash, Python and
+                        automation to improve engineering workflows.
+                    </p>
+                </article>
+
+            </div>
+
+        </div>
     </section>
 
     <section>
-        <h2>What I Have Learned So Far</h2>
+        <div class="container">
 
-        <ul>
-            <li>Kubernetes manages containerized workloads.</li>
-            <li>kubectl is used to communicate with a Kubernetes cluster.</li>
-            <li>Pods are the basic execution units in Kubernetes.</li>
-            <li>Minikube is useful for local Kubernetes development.</li>
-            <li>Kubernetes can help automate application deployment and scaling.</li>
-        </ul>
+            <div class="section-label">
+                JOURNAL PHILOSOPHY
+            </div>
+
+            <div class="journal-principle">
+                <p>
+                    I believe the best way to learn engineering
+                    is to build real things, break them,
+                    understand why they broke, fix them,
+                    and document the process.
+                </p>
+            </div>
+
+        </div>
     </section>
 
-    <section>
-        <h2>Next Step</h2>
+</main>
 
-        <p>
-            My next step is to go deeper into Kubernetes Pods, Deployments,
-            Services, ConfigMaps, and Secrets. I also want to understand how
-            Kubernetes fits into a complete DevSecOps pipeline.
-        </p>
-
-        <p>
-            This is only the beginning, but I am starting to see how containers,
-            infrastructure, automation, security, and application deployment
-            connect together.
-        </p>
-    </section>
-
-    <footer>
-        <p>© 2026 Felix Amoah — DevSecOps Learning Journey</p>
-    </footer>
-</article>
-```
+<footer class="site-footer">
+    <p><strong>Felix@2026</strong></p>
+</footer>
 
 </body>
 </html>

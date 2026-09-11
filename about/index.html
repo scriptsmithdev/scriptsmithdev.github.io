@@ -279,21 +279,10 @@ section {
     color: var(--muted);
 }
 
-footer {
-    padding: 35px 0;
-    border-top: 1px solid var(--border);
-    background: white;
-}
-
 .footer-inner {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-}
-
-footer p {
-    color: var(--muted);
-    font-size: .82rem;
 }
 
 @media (max-width: 850px) {
@@ -329,10 +318,174 @@ footer p {
     }
 }
 
-    </style>
+    
+/* ================= PAGE-SPECIFIC DEVSECOPS THEME ================= */
+
+body.page-about {
+    background:
+        radial-gradient(
+            circle at 15% 15%,
+            #312e81 0%,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 85% 85%,
+            #1e1b4b 0%,
+            transparent 40%
+        ),
+        linear-gradient(
+            135deg,
+            #0f0720,
+            #1e1b4b
+        );
+
+    background-attachment: fixed;
+    color: #f8fafc;
+}
+
+body.page-about::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: .55;
+    
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(255,255,255,.08) 0 2px, transparent 3px),
+                radial-gradient(circle at 80% 30%, rgba(255,255,255,.06) 0 2px, transparent 3px),
+                radial-gradient(circle at 40% 75%, rgba(255,255,255,.05) 0 2px, transparent 3px);
+            background-size: 180px 180px;
+        
+}
+
+body.page-about .hero {
+    position: relative;
+}
+
+body.page-about h1,
+body.page-about h2,
+body.page-about h3 {
+    color: #f8fafc;
+}
+
+body.page-about .eyebrow,
+body.page-about .section-number {
+    color: #a78bfa;
+}
+
+body.page-about .gradient {
+    background: linear-gradient(
+        90deg,
+        #a78bfa,
+        #ffffff
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+body.page-about .btn-primary {
+    background: #a78bfa;
+    color: #020617;
+}
+
+body.page-about .btn-primary:hover {
+    filter: brightness(1.12);
+}
+
+body.page-about .btn-outline:hover {
+    border-color: #a78bfa;
+    color: #a78bfa;
+}
+
+body.page-about .card,
+body.page-about .project-card,
+body.page-about .skill-card,
+body.page-about .highlight {
+    background: rgba(15, 23, 42, .68);
+    border-color: rgba(255,255,255,.10);
+    backdrop-filter: blur(10px);
+}
+
+body.page-about .navbar {
+    background: rgba(2, 6, 23, .78);
+    backdrop-filter: blur(14px);
+}
+
+body.page-about .
+
+@media (max-width: 700px) {
+    body.page-about {
+        background-attachment: scroll;
+    }
+}
+
+
+/* ================= PAGE BACKGROUND ================= */
+
+body {
+    background:
+        radial-gradient(circle at 15% 20%, #241447 0%, transparent 28%),
+        radial-gradient(circle at 85% 75%, #38205f 0%, transparent 30%),
+        linear-gradient(135deg, #120d24, #241447 55%, #38205f);
+    background-attachment: fixed;
+    color: #f4f7fb;
+}
+
+/* Subtle DevSecOps technical grid */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.10;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 45px 45px;
+}
+
+main,
+section,
+header,
+
+.container {
+    position: relative;
+}
+
+/* ================= END PAGE BACKGROUND ================= */
+
+
+/* ================= FOOTER ================= */
+
+
+/* ================= SITE FOOTER ================= */
+
+.site-footer {
+    width: 100% !important;
+    margin: 80px 0 0 0 !important;
+    padding: 40px 20px !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    text-align: center !important;
+    clear: both !important;
+}
+
+.site-footer p {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+</style>
 </head>
 
-<body>
+<body class="page-about">
 
 
 <header class="navbar">
@@ -444,14 +597,8 @@ footer p {
 </main>
 
 
-<footer>
-    <div class="container footer-inner">
-        <p>© 2026 Felix Amoah. DevSecOps Engineer in Training.</p>
-
-        <p>
-            AWS • Docker • Terraform • Kubernetes • CI/CD • Security
-        </p>
-    </div>
+<footer class="site-footer">
+    <p><strong>Felix@2026</strong></p>
 </footer>
 
 

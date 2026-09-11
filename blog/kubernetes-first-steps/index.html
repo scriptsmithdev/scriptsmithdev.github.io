@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kubernetes: My First Steps into Container Orchestration | Felix Amoah</title>
+
+    <meta name="description"
+          content="My first practical experience learning Kubernetes, Minikube, kubectl, pods, deployments and container orchestration.">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #edf2f7;
+            background:
+                radial-gradient(circle at 10% 15%, #172554 0%, transparent 28%),
+                radial-gradient(circle at 90% 80%, #164e63 0%, transparent 30%),
+                linear-gradient(135deg, #07111f, #0f172a 55%, #102a43);
+            line-height: 1.8;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(900px, calc(100% - 36px));
+            margin: auto;
+        }
+
+        /* NAVIGATION */
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(5, 10, 20, 0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255,255,255,0.10);
+        }
+
+        .nav-inner {
+            width: min(1120px, calc(100% - 36px));
+            margin: auto;
+            min-height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+        .logo img {
+            width: 28px !important;
+            height: 28px !important;
+            max-width: 28px !important;
+            max-height: 28px !important;
+            object-fit: contain !important;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 18px;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-github {
+            padding: 7px 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 7px;
+        }
+
+        /* ARTICLE HEADER */
+
+        .article-header {
+            padding: 100px 0 65px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 35px;
+            color: #7dd3fc;
+            font-size: 14px;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+        }
+
+        .tags {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+        }
+
+        .tag {
+            padding: 5px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(125,211,252,0.25);
+            background: rgba(125,211,252,0.08);
+            color: #bae6fd;
+            font-size: 12px;
+        }
+
+        h1 {
+            font-size: clamp(42px, 7vw, 72px);
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 25px;
+        }
+
+        .gradient {
+            background: linear-gradient(90deg, #ffffff, #7dd3fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .meta {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* ARTICLE */
+
+        article {
+            padding-bottom: 90px;
+        }
+
+        article h2 {
+            margin-top: 55px;
+            margin-bottom: 18px;
+            font-size: 30px;
+            color: #ffffff;
+        }
+
+        article h3 {
+            margin-top: 35px;
+            margin-bottom: 12px;
+            font-size: 21px;
+        }
+
+        article p {
+            margin-bottom: 20px;
+            color: #cbd5e1;
+            font-size: 17px;
+        }
+
+        article ul,
+        article ol {
+            margin: 15px 0 25px 25px;
+            color: #cbd5e1;
+        }
+
+        article li {
+            margin-bottom: 8px;
+        }
+
+        code {
+            padding: 3px 6px;
+            border-radius: 5px;
+            background: rgba(255,255,255,0.09);
+            color: #bae6fd;
+            font-family: monospace;
+        }
+
+        pre {
+            overflow-x: auto;
+            padding: 22px;
+            margin: 22px 0 30px;
+            border-radius: 12px;
+            background: #050b14;
+            border: 1px solid rgba(255,255,255,0.10);
+        }
+
+        pre code {
+            padding: 0;
+            background: transparent;
+            color: #dbeafe;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .callout {
+            margin: 35px 0;
+            padding: 25px;
+            border-left: 3px solid #38bdf8;
+            background: rgba(56,189,248,0.07);
+            border-radius: 8px;
+        }
+
+        .callout strong {
+            color: #7dd3fc;
+        }
+
+        /* FOOTER */
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+            .nav-inner {
+                flex-direction: column;
+                padding: 16px 0;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+
+            .article-header {
+                padding-top: 70px;
+            }
+
+            article p {
+                font-size: 16px;
+            }
+        }
+
+
+        /* FINAL ARTICLE HEADER */
+
+        .navbar .nav-inner {
+            width: min(1120px, calc(100% - 36px));
+            min-height: 64px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .navbar nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            display: block;
+            width: 28px;
+            height: 28px;
+            margin-left: 18px;
+        }
+
+        .navbar .logo-img {
+            display: block;
+            width: 28px !important;
+            height: 28px !important;
+            max-width: 28px !important;
+            max-height: 28px !important;
+            object-fit: contain !important;
+        }
+
+
+/* FINAL LOGO SETTINGS */
+
+.navbar .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 64px;
+}
+
+.navbar nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .logo {
+    display: block;
+    width: 32px;
+    height: 32px;
+    margin-left: 20px;
+    flex-shrink: 0;
+}
+
+.navbar .logo-img {
+    display: block;
+    width: 32px !important;
+    height: 32px !important;
+    max-width: 32px !important;
+    max-height: 32px !important;
+    object-fit: contain !important;
+}
+
+
+/* ================= FOOTER ================= */
+
+
+
+
+
+/* ================= SITE FOOTER ================= */
+
+.site-footer {
+    width: 100% !important;
+    margin: 80px 0 0 0 !important;
+    padding: 40px 20px !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    text-align: center !important;
+    clear: both !important;
+}
+
+.site-footer p {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+</style>
+
+<style>
+
+/* ARTICLE DISPLAY FIX */
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body {
+    display: block;
+}
+
+main {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.article-header {
+    display: block;
+    width: 100%;
+    min-height: auto;
+}
+
+article {
+    display: block;
+    width: 100%;
+    min-height: auto;
+    height: auto;
+    overflow: visible;
+}
+
+article .container {
+    display: block;
+    width: min(900px, calc(100% - 36px));
+    margin-left: auto;
+    margin-right: auto;
+}
+
+article p,
+article h2,
+article h3,
+article ul,
+article ol,
+article pre,
+article .callout {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-x: auto;
+}
+
+</style>
+
+
+<style>
+</style>
+
+
+<style>
+</style>
+
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="nav-inner">
+
+        <a href="/index.html">
+            <img src="/15121.png"
+                 alt="Felix Amoah Logo"
+                 class="logo-img">
+        </a>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/about/index.html">About</a></li>
+                <li><a href="/projects/index.html">Projects</a></li>
+                <li><a href="/labs/index.html">Labs</a></li>
+                <li><a href="/blog/index.html">Journal</a></li>
+                <li><a href="/skills/index.html">Skills</a></li>
+                <li><a href="/certifications/index.html">Certifications</a></li>
+                <li><a href="/security/index.html">Security</a></li>
+                <li><a href="/resume/index.html">Resume</a></li>
+                <li><a href="/contact/index.html">Contact</a></li>
+                <li>
+                    <a class="nav-github"
+                       href="https://github.com/scriptsmithdev"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        GitHub
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+<section class="article-header">
+    <div class="container">
+
+        <a class="back" href="/blog/index.html">
+            ← Back to Engineering Journal
+        </a>
+
+        <div class="tags">
+            <span class="tag">Kubernetes</span>
+            <span class="tag">Minikube</span>
+            <span class="tag">Docker</span>
+            <span class="tag">DevSecOps</span>
+        </div>
+
+        <h1>
+            Kubernetes:
+            <span class="gradient">
+                My First Steps into Container Orchestration
+            </span>
+        </h1>
+
+        <div class="meta">
+            August 2026 · Felix Amoah · DevSecOps Engineering Journal
+        </div>
+
+    </div>
+</section>
+
+<article>
+<div class="container">
+
+    <p>
+        Kubernetes was one of the technologies I was most interested
+        in reaching during my DevSecOps training. After working with
+        Linux, Git, Docker, AWS, Terraform and CI/CD, I wanted to
+        understand what happens when containerized applications need
+        to be managed at a larger scale.
+    </p>
+
+    <p>
+        That led me to Kubernetes and, more specifically, Minikube.
+        This article documents my first practical steps, the problems
+        I encountered, and what I learned from working through them.
+    </p>
+
+    <div class="callout">
+        <strong>Lesson learned:</strong>
+        Kubernetes is not simply "Docker with extra commands."
+        It introduces a completely different way of thinking about
+        application deployment, networking and infrastructure.
+    </div>
+
+    <h2>1. What is Kubernetes?</h2>
+
+    <p>
+        Kubernetes is an open-source container orchestration platform.
+        Instead of manually managing individual containers, Kubernetes
+        provides a system for deploying, scaling and managing
+        containerized workloads.
+    </p>
+
+    <p>
+        The basic idea is simple: I describe the desired state of my
+        application, and Kubernetes works to keep the cluster running
+        in that state.
+    </p>
+
+    <h2>2. Why I Started with Minikube</h2>
+
+    <p>
+        Running a production Kubernetes cluster just for learning
+        would be unnecessary. Minikube provides a lightweight local
+        Kubernetes environment that makes it possible to experiment
+        without needing a large cloud infrastructure setup.
+    </p>
+
+    <p>
+        I used Docker as the Minikube driver, allowing the Kubernetes
+        environment to run locally through containers.
+    </p>
+
+    <pre><code>minikube start --driver=docker</code></pre>
+
+    <h2>3. Understanding kubectl</h2>
+
+    <p>
+        One of the first tools I had to become comfortable with was
+        <code>kubectl</code>. It is the command-line interface used
+        to communicate with a Kubernetes cluster.
+    </p>
+
+    <pre><code>kubectl get nodes
+kubectl get pods
+kubectl get deployments
+kubectl get services</code></pre>
+
+    <p>
+        These commands quickly became essential for understanding
+        what was happening inside the cluster.
+    </p>
+
+    <h2>4. My First Kubernetes Objects</h2>
+
+    <p>
+        Kubernetes applications are represented using different
+        resources. Some of the first concepts I worked with were:
+    </p>
+
+    <ul>
+        <li>Pods</li>
+        <li>Deployments</li>
+        <li>Services</li>
+        <li>Namespaces</li>
+        <li>Nodes</li>
+    </ul>
+
+    <h3>Pods</h3>
+
+    <p>
+        A Pod is the smallest deployable unit in Kubernetes. It can
+        contain one or more containers that share networking and
+        storage resources.
+    </p>
+
+    <h3>Deployments</h3>
+
+    <p>
+        Deployments provide a higher-level way of managing Pods.
+        They allow Kubernetes to maintain a desired number of
+        application replicas and perform controlled updates.
+    </p>
+
+    <h3>Services</h3>
+
+    <p>
+        Services provide stable networking for applications running
+        inside the cluster. This becomes especially important because
+        Pods can be created, destroyed and replaced.
+    </p>
+
+    <h2>5. Working with Namespaces</h2>
+
+    <p>
+        I also started working with namespaces to separate workloads
+        logically inside the cluster.
+    </p>
+
+    <pre><code>kubectl get namespaces
+
+kubectl create namespace dev
+
+kubectl config set-context --current --namespace=dev</code></pre>
+
+    <p>
+        Using a dedicated namespace helped me understand how Kubernetes
+        environments can be organized instead of placing everything
+        into the default namespace.
+    </p>
+
+    <h2>6. Problems I Encountered</h2>
+
+    <p>
+        My Kubernetes journey was not completely smooth. I encountered
+        connection errors where <code>kubectl</code> could no longer
+        communicate with the Kubernetes API server.
+    </p>
+
+    <pre><code>couldn't get current server API group list
+
+dial tcp 127.0.0.1:xxxxx:
+connect: connection refused</code></pre>
+
+    <p>
+        This taught me an important troubleshooting lesson:
+        when <code>kubectl</code> fails, the first thing to investigate
+        is not necessarily the application. The Kubernetes cluster,
+        context and API server itself may be the problem.
+    </p>
+
+    <p>
+        I learned to check the Minikube profile and Kubernetes context
+        before continuing with application-level troubleshooting.
+    </p>
+
+    <pre><code>minikube profile list
+
+minikube status
+
+kubectl config get-contexts
+
+kubectl config current-context</code></pre>
+
+    <h2>7. What Kubernetes Changed in My Thinking</h2>
+
+    <p>
+        Docker taught me how to package and run applications in
+        containers. Kubernetes started teaching me how those containers
+        can be managed as part of a larger system.
+    </p>
+
+    <p>
+        I began thinking less about "running a container" and more
+        about desired state, replicas, networking, service discovery,
+        orchestration and automated recovery.
+    </p>
+
+    <h2>8. What I Want to Learn Next</h2>
+
+    <p>
+        This is only the beginning of my Kubernetes journey. My next
+        areas of focus are:
+    </p>
+
+    <ol>
+        <li>Kubernetes networking</li>
+        <li>ConfigMaps and Secrets</li>
+        <li>Persistent storage</li>
+        <li>Ingress</li>
+        <li>Helm</li>
+        <li>Kubernetes security</li>
+        <li>Deploying applications through CI/CD</li>
+    </ol>
+
+    <h2>Final Thoughts</h2>
+
+    <p>
+        My first experience with Kubernetes reinforced something I
+        have learned throughout my DevSecOps training: understanding
+        the technology is only one part of the journey. The real
+        learning happens when things break and I have to investigate
+        why.
+    </p>
+
+    <p>
+        Kubernetes has given me another layer of infrastructure to
+        understand, and I am looking forward to documenting the
+        next stages of the journey here.
+    </p>
+
+</div>
+</article>
+
+</main>
+
+<footer class="site-footer">
+    <p><strong>Felix@2026</strong></p>
+</footer>
+
+</body>
+</html>
