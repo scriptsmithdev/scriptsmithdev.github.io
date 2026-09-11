@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Learning how Kubernetes Deployments manage application versions, ReplicaSets, scaling, rollouts, and rollbacks."
+    >
+
+    <title>Kubernetes Deployments: Moving Beyond the Pod | Felix Amoah</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.7;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            color: #e5e7eb;
+            background: #020617;
+        }
+
+        a {
+            color: #60a5fa;
+        }
+
+        article {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .meta {
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            margin-top: 40px;
+            color: #93c5fd;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-right: 8px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: #1e293b;
+            color: #93c5fd;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: #1e293b;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        pre {
+            background: #0f172a;
+            padding: 20px;
+            overflow-x: auto;
+            border-radius: 8px;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+        }
+    </style>
+</head>
+
+<body>
+
+<article>
+
+    <header>
+        <p>
+            <a href="/blog/index.html">← Back to DevSecOps Journal</a>
+        </p>
+
+        <div class="meta">
+            <span class="tag">Kubernetes</span>
+            <span class="tag">DevSecOps</span>
+            <span class="tag">Containers</span>
+        </div>
+
+        <h1>
+            Kubernetes Deployments: Moving Beyond the Pod
+        </h1>
+
+        <p class="meta">
+            September 11, 2026
+        </p>
+
+        <p>
+            After getting familiar with Kubernetes Pods, the next step
+            was understanding how Kubernetes manages applications beyond
+            a single running container. This led me to Kubernetes
+            Deployments and ReplicaSets.
+        </p>
+    </header>
+
+    <section>
+        <h2>What I Learned</h2>
+
+        <p>
+            I learned that a Kubernetes Deployment provides a declarative
+            way to manage application workloads. Instead of manually
+            creating individual Pods, I can describe the desired state
+            of an application and allow Kubernetes to maintain that state.
+        </p>
+
+        <p>
+            A Deployment manages ReplicaSets, and ReplicaSets are
+            responsible for maintaining the desired number of Pods.
+            This creates a useful relationship between Deployments,
+            ReplicaSets, and Pods.
+        </p>
+    </section>
+
+    <section>
+        <h2>What I Did</h2>
+
+        <p>
+            I created a Kubernetes Deployment and used
+            <code>kubectl</code> to inspect the resources Kubernetes
+            created.
+        </p>
+
+        <pre><code>kubectl get deployments
+kubectl get replicasets
+kubectl get pods</code></pre>
+
+        <p>
+            I also experimented with scaling the application and
+            examined how Kubernetes responded by creating or removing
+            Pods to match the desired replica count.
+        </p>
+
+        <pre><code>kubectl scale deployment nginx --replicas=3
+kubectl get pods</code></pre>
+    </section>
+
+    <section>
+        <h2>Understanding Rollouts</h2>
+
+        <p>
+            One of the most useful features I explored was the Deployment
+            rollout mechanism. Deployments allow application versions to
+            be updated gradually rather than replacing every Pod at once.
+        </p>
+
+        <p>
+            I used commands such as:
+        </p>
+
+        <pre><code>kubectl rollout status deployment/nginx
+kubectl rollout history deployment/nginx</code></pre>
+
+        <p>
+            This helped me understand how Kubernetes keeps track of
+            different Deployment revisions.
+        </p>
+    </section>
+
+    <section>
+        <h2>The Problem</h2>
+
+        <p>
+            The main challenge was understanding the difference between
+            a Pod, a ReplicaSet, and a Deployment. At first, these
+            resources seemed to perform similar jobs.
+        </p>
+    </section>
+
+    <section>
+        <h2>How I Solved It</h2>
+
+        <p>
+            I solved this by inspecting each resource independently
+            using <code>kubectl</code>. Looking at the resources together
+            made the hierarchy much clearer.
+        </p>
+
+        <p>
+            The basic model I now understand is:
+        </p>
+
+        <pre><code>Deployment
+    |
+    v
+ReplicaSet
+    |
+    v
+Pods</code></pre>
+
+        <p>
+            The Deployment manages the desired application state,
+            the ReplicaSet maintains the required number of Pods,
+            and the Pods run the actual application containers.
+        </p>
+    </section>
+
+    <section>
+        <h2>Key Takeaways</h2>
+
+        <ul>
+            <li>Deployments provide declarative application management.</li>
+            <li>Deployments manage ReplicaSets.</li>
+            <li>ReplicaSets maintain the desired number of Pods.</li>
+            <li>Deployments support rolling updates.</li>
+            <li>Deployment history can be inspected with kubectl.</li>
+            <li>Understanding the relationship between resources makes Kubernetes much easier to reason about.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>What I Want to Explore Next</h2>
+
+        <p>
+            My next step is to go deeper into Kubernetes rolling updates,
+            rollout strategies, rollback procedures, and how these
+            concepts fit into a CI/CD pipeline.
+        </p>
+    </section>
+
+    <footer>
+        <p>
+            <a href="/blog/index.html">Back to DevSecOps Journal</a>
+        </p>
+
+        <p>
+            © 2026 Felix Amoah
+        </p>
+    </footer>
+
+</article>
+
+</body>
+</html>
