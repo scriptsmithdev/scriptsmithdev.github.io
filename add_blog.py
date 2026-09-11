@@ -26,23 +26,27 @@ def check_file(path):
 
 
 def check_blog_markers():
-    """Verify that the homepage contains our automation markers."""
+    """Verify that blog/index.html contains our automation markers."""
 
-    html_content = PORTFOLIO_FILE.read_text(encoding="utf-8")
+    if not BLOG_INDEX.exists():
+        print("✗ blog/index.html is missing")
+        return False
+
+    html_content = BLOG_INDEX.read_text(encoding="utf-8")
 
     if BLOG_START not in html_content:
-        print("✗ BLOG:START marker is missing")
+        print("✗ BLOG:START marker is missing from blog/index.html")
         return False
 
     if BLOG_END not in html_content:
-        print("✗ BLOG:END marker is missing")
+        print("✗ BLOG:END marker is missing from blog/index.html")
         return False
 
     if html_content.index(BLOG_START) >= html_content.index(BLOG_END):
         print("✗ Blog markers are in the wrong order")
         return False
 
-    print("✓ Blog markers found")
+    print("✓ Blog markers found in blog/index.html")
     return True
 
 
@@ -95,7 +99,11 @@ def create_article():
         print("✗ Could not create a filename from the title.")
         return 1
 
-    article_file = BLOG_DIR / f"{slug}.html"
+    # Store published articles inside blog/posts/.
+    POSTS_DIR = BLOG_DIR / "posts"
+    POSTS_DIR.mkdir(parents=True, exist_ok=True)
+
+    article_file = POSTS_DIR / f"{slug}.html"
 
     if article_file.exists():
         print()
@@ -262,6 +270,49 @@ def create_article():
 """
 
     article_file.write_text(article_html, encoding="utf-8")
+
+    # ---------------------------------------------------------
+    # Add the new article card to blog/index.html
+    # ---------------------------------------------------------
+
+    blog_index = BLOG_INDEX.read_text(encoding="utf-8")
+
+    if BLOG_START not in blog_index or BLOG_END not in blog_index:
+        print("✗ Blog markers are missing from blog/index.html")
+        print("  Article was created, but the index was not updated.")
+        return 1
+
+    article_card = f"""
+                <article class="note">
+                    <div class="note-number">NEW</div>
+
+                    <div class="article-meta">
+                        <span class="tag">{category}</span>
+                        <span class="tag">{display_date}</span>
+                    </div>
+
+                    <h3>{title}</h3>
+
+                    <p>
+                        {summary}
+                    </p>
+
+                    <a class="read-button" href="/blog/posts/{slug}.html">
+                        Read Article →
+                    </a>
+                </article>
+"""
+
+    # Insert newest article immediately after BLOG:START.
+    insertion_point = blog_index.index(BLOG_START) + len(BLOG_START)
+
+    blog_index = (
+        blog_index[:insertion_point]
+        + article_card
+        + blog_index[insertion_point:]
+    )
+
+    BLOG_INDEX.write_text(blog_index, encoding="utf-8")
 
     print()
     print("✓ Article created successfully")
